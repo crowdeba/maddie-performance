@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+<title>Maddie's Training</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Maddie's Training">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2B2B2B">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='34' fill='%232B2B2B'/%3E%3Ccircle cx='90' cy='90' r='58' fill='%23C8102E' stroke='%23fff' stroke-width='6'/%3E%3Ctext x='90' y='108' font-family='Arial' font-weight='800' font-size='58' fill='%23fff' text-anchor='middle'%3EMP%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --red:#C8102E; --red-deep:#8E0B21; --ink:#1A1A1A; --charcoal:#2B2B2B;
+    --slate:#6B6B6B; --slate-light:#9C9C9C; --paper:#FAFAFA; --card:#FFFFFF;
+    --line:#EDEDED; --border:#E4E4E4; --amber:#B5790A; --blue:#1D6FA5; --green:#1E8E5A;
+    --radius:10px; --shadow:0 2px 10px rgba(0,0,0,0.05); --shadow-lg:0 10px 28px rgba(0,0,0,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{overflow-x:hidden; width:100%;}
+  body{margin:0; overflow-x:hidden; width:100%; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.5;}
+  h1,h2,h3{font-family:"Arial Narrow",Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; color:var(--charcoal); margin:0 0 6px 0;}
+
+  .topbar{background:var(--charcoal); color:#fff; position:sticky; top:0; z-index:50; box-shadow:var(--shadow-lg); border-bottom:3px solid var(--red);}
+  .topbar-inner{max-width:900px; margin:0 auto; padding:12px 18px; padding-left:calc(18px + env(safe-area-inset-left)); padding-right:calc(18px + env(safe-area-inset-right)); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{width:34px;height:34px;border-radius:50%; background:var(--red); border:2px solid #fff; display:flex;align-items:center;justify-content:center; font-weight:800; color:#fff; font-size:12px;}
+  .brand h1{color:#fff; font-size:16px; margin:0; letter-spacing:0.05em;}
+  nav.pillnav{display:flex; gap:4px;}
+  nav.pillnav button{background:none; border:none; color:#C9C9C9; font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em; padding:8px 13px; border-radius:20px; font-weight:700; cursor:pointer; font-family:inherit;}
+  nav.pillnav button:hover{background:rgba(255,255,255,0.08); color:#fff;}
+  nav.pillnav button.active{background:var(--red); color:#fff;}
+  .coach-link{background:none; border:1px solid #555; color:#999; font-size:10.5px; padding:5px 10px; border-radius:14px; cursor:pointer; font-family:inherit; text-transform:uppercase; letter-spacing:0.04em;}
+  .coach-link:hover{border-color:var(--red); color:#fff;}
+
+  .wrap{max-width:900px; margin:0 auto; padding:26px 18px 70px;}
+  .view{display:none;}
+  .view.active{display:block;}
+  .eyebrow{display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:6px;}
+  .lede{color:var(--slate); font-size:14px; max-width:600px; margin:4px 0 0;}
+
+  .grid{display:grid; gap:14px;}
+  .grid-2{grid-template-columns:1fr 1fr;}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:720px){
+    .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+    nav.pillnav{order:3; width:100%; justify-content:flex-start; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:2px; scrollbar-width:none;}
+    nav.pillnav::-webkit-scrollbar{display:none;}
+    nav.pillnav button{flex-shrink:0;}
+  }
+
+  .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; box-shadow:var(--shadow);}
+  .card.accent-red{border-left:4px solid var(--red);}
+  .card.accent-charcoal{border-left:4px solid var(--charcoal);}
+  .card h3{font-size:13.5px; letter-spacing:0.06em;}
+  .note-box{border-radius:8px; padding:12px 14px; font-size:12.5px; margin-bottom:10px;}
+  .note-box.grey{background:#F2F2F2; border:1px solid #DADADA; color:#333;}
+  .small{font-size:12px; color:var(--slate);}
+
+  label.field-label{display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate); margin-bottom:4px; font-weight:700;}
+  input.field, textarea.field{width:100%; border:1.5px solid var(--border); border-radius:6px; padding:8px 9px; font-size:13.5px; font-family:inherit; color:var(--ink); background:#fbfbfb;}
+  input.field:focus, textarea.field:focus{outline:none; border-color:var(--red); background:#fff;}
+  textarea.field{resize:vertical; min-height:60px;}
+
+  .tag{display:inline-block; font-size:10px; font-weight:700; padding:3px 9px; border-radius:20px; text-transform:uppercase; letter-spacing:0.03em;}
+  .tag.red{background:rgba(200,16,46,0.10); color:var(--red-deep);}
+  .tag.charcoal{background:rgba(43,43,43,0.08); color:var(--charcoal);}
+  .tag.amber{background:rgba(181,121,10,0.14); color:var(--amber);}
+  .tag.blue{background:rgba(29,111,165,0.10); color:var(--blue);}
+
+  /* HOME */
+  .hero{background:linear-gradient(135deg, var(--charcoal), #1a1a1a 65%, var(--red-deep)); color:#fff; border-radius:14px; padding:24px 26px; margin-bottom:18px;}
+  .hero h2{color:#fff; font-size:22px; margin-bottom:2px;}
+  .hero .phase-line{color:#FF9AA5; font-size:13px; font-weight:700; margin-top:4px;}
+  .today-btn{display:block; width:100%; background:var(--red); color:#fff; border:none; border-radius:10px; padding:16px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; font-size:15px; cursor:pointer; margin-top:16px; text-align:center;}
+  .today-btn:hover{background:var(--red-deep);}
+  .week-row{display:flex; gap:8px; margin-top:14px;}
+  .week-chip{flex:1; background:rgba(255,255,255,0.08); border-radius:8px; padding:9px 8px; text-align:center; cursor:pointer; border:1px solid rgba(255,255,255,0.12);}
+  .week-chip:hover{background:rgba(255,255,255,0.15);}
+  .week-chip .d{font-weight:800; font-size:12px;}
+  .week-chip .f{font-size:9.5px; color:#C9C9C9; margin-top:2px; text-transform:uppercase; letter-spacing:0.03em;}
+
+  /* WORKOUT */
+  .tabs{display:flex; gap:6px; margin-bottom:12px; border-bottom:2px solid var(--border); flex-wrap:wrap;}
+  .tabs button{background:none; border:none; padding:9px 15px; cursor:pointer; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--slate); border-bottom:3px solid transparent; font-family:inherit;}
+  .tabs button.active{color:var(--charcoal); border-bottom-color:var(--red);}
+  .ex-card{border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-bottom:10px; background:#fff;}
+  .ex-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .ex-name{font-weight:800; font-size:14px;}
+  .flag-ex-btn{background:none; border:1.5px solid var(--border); color:var(--slate-light); font-size:14px; width:28px; height:28px; border-radius:6px; cursor:pointer; flex-shrink:0; line-height:1;}
+  .flag-ex-btn.flagged{background:var(--red); border-color:var(--red); color:#fff;}
+  .ex-sr{font-weight:800; color:var(--red-deep); font-size:13px; white-space:nowrap; text-align:right;}
+  .ex-cue{font-size:11.5px; color:var(--slate); margin:5px 0 10px;}
+  .taper-target{font-size:12.5px; font-weight:600; color:var(--amber); background:rgba(181,121,10,0.10); border-radius:8px; padding:8px 10px; margin:0 0 10px;}
+  .taper-target.ask{color:var(--red-deep); background:rgba(142,11,33,0.08);}
+  .ex-last{font-size:11.5px; margin-bottom:8px;}
+  .ex-last input{max-width:220px; display:inline-block;}
+  .set-row{display:grid; grid-template-columns:60px 1fr 1fr 34px; gap:8px; align-items:center; margin-bottom:6px;}
+  .set-row .set-label{font-size:11.5px; font-weight:700; color:var(--slate);}
+  .set-row input[type=checkbox]{width:20px; height:20px; accent-color:var(--red); cursor:pointer;}
+  .complete-btn{background:var(--red); color:#fff; border:none; border-radius:8px; padding:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; font-size:13px; cursor:pointer; width:100%; margin-top:8px;}
+  .reassurance-note{background:#fff; border-left:3px solid var(--slate-light); border-radius:6px; padding:10px 12px; font-size:12.5px; color:var(--ink); line-height:1.5; margin-top:14px;}
+  .consistency-label{font-family:"Arial Narrow",Helvetica,Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; font-size:13px; color:var(--charcoal); margin:0 0 8px;}
+  .consistency-num-sm{display:flex; align-items:baseline; gap:6px;}
+  .consistency-big-sm{font-size:22px; font-weight:800; color:var(--charcoal);}
+  .consistency-of{font-size:14px; color:var(--slate);}
+  .consistency-line{font-size:13px; color:var(--slate); margin:8px 0 0; line-height:1.5;}
+  .complete-btn.done{background:var(--green);}
+  .feel-btn{flex:1; background:#fff; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px; cursor:pointer; font-weight:800; font-size:12px; text-align:center; line-height:1.4;}
+  .feel-btn span{display:block;}
+  .feel-btn[data-feel="good"].selected{background:rgba(30,142,90,0.14); border-color:var(--green);}
+  .feel-btn[data-feel="tough"].selected{background:rgba(181,121,10,0.14); border-color:var(--amber);}
+  .feel-btn[data-feel="too-much"].selected{background:rgba(200,16,46,0.10); border-color:var(--red);}
+  .contrast-card{border:1.5px solid var(--red); border-radius:8px; padding:14px; margin-bottom:10px; background:#FFF7F7;}
+  .round-row{display:flex; gap:8px; align-items:center; margin-top:8px;}
+  .round-row input[type=checkbox]{width:20px; height:20px; accent-color:var(--red);}
+
+  /* CALENDAR */
+  .cal-controls{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+  .cal-nav-btn{background:var(--charcoal); color:#fff; border:none; border-radius:6px; padding:7px 13px; font-weight:700; cursor:pointer; font-size:12.5px;}
+  .cal-nav-btn:disabled{opacity:0.3; cursor:not-allowed;}
+  .cal-month-label{font-family:"Arial Narrow",Arial,sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; font-size:16px;}
+  .cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:4px;}
+  .cal-dow{text-align:center; font-size:9.5px; font-weight:800; text-transform:uppercase; color:var(--slate-light); padding:3px 0;}
+  .cal-cell{border:1px solid var(--border); border-radius:6px; min-height:58px; padding:4px; background:#fff; cursor:pointer;}
+  .cal-cell.blank{background:transparent; border:none; cursor:default;}
+  .cal-cell.is-today{border-color:var(--red); box-shadow:0 0 0 2px rgba(200,16,46,0.25);}
+  .cal-cell.is-selected{background:#FFF3F3;}
+  .cal-daynum{font-size:10.5px; font-weight:700;}
+  .cal-pill{display:block; font-size:8px; font-weight:800; border-radius:3px; padding:1px 3px; margin-top:2px; text-transform:uppercase;}
+  .cal-pill.lift{background:rgba(200,16,46,0.12); color:var(--red-deep);}
+  .cal-pill.meet{background:rgba(181,121,10,0.16); color:var(--amber);}
+  .cal-pill.taper{background:rgba(29,111,165,0.12); color:var(--blue);}
+  .cal-pill.phase{background:var(--charcoal); color:#fff;}
+  .cal-pill.nolift{background:rgba(107,107,107,0.16); color:var(--slate);}
+  .cal-pill.modified{background:rgba(142,11,33,0.14); color:var(--red-deep);}
+  .cal-legend{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; font-size:11px; color:var(--slate);}
+  .cal-legend span{display:inline-flex; align-items:center; gap:5px;}
+  .dot{width:8px; height:8px; border-radius:2px; display:inline-block;}
+
+  /* PROGRESS */
+  .prog-bar-track{height:10px; background:var(--line); border-radius:6px; overflow:hidden; margin-top:8px;}
+  .prog-bar-fill{height:100%; background:var(--red); border-radius:6px; transition:width .2s ease;}
+  .prog-nums{display:flex; justify-content:space-between; font-size:11px; color:var(--slate); margin-top:4px;}
+
+  /* COACH MODE */
+  #coach-panel{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:100; align-items:center; justify-content:center; padding:20px;}
+  #coach-panel.open{display:flex;}
+  .coach-box{background:#fff; border-radius:12px; padding:20px; max-width:700px; width:100%; max-height:85vh; overflow:auto;}
+  .coach-box textarea{width:100%; height:340px; font-family:"SF Mono",Consolas,monospace; font-size:11.5px; border:1.5px solid var(--border); border-radius:8px; padding:10px;}
+  .coach-actions{display:flex; gap:8px; margin-top:10px;}
+  .coach-actions button{flex:1; padding:11px; border-radius:8px; border:none; font-weight:700; cursor:pointer; font-size:13px;}
+  .btn-apply{background:var(--red); color:#fff;}
+  .btn-copy{background:var(--charcoal); color:#fff;}
+  .btn-close{background:var(--line); color:var(--charcoal);}
+
+  .footer{text-align:center; padding:24px 18px; padding-bottom:calc(24px + env(safe-area-inset-bottom)); color:var(--slate-light); font-size:11px; border-top:1px solid var(--border); margin-top:10px;}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><div class="brand-mark">MP</div><h1>Maddie's Training</h1></div>
+    <nav class="pillnav">
+      <button data-view="home" class="active" onclick="showView('home')">Home</button>
+      <button data-view="workouts" onclick="showView('workouts')">Workouts</button>
+      <button data-view="calendar" onclick="showView('calendar')">Calendar</button>
+      <button data-view="progress" onclick="showView('progress')">Progress</button>
+      <button data-view="rules" onclick="showView('rules')">Training Rules</button>
+      <button data-view="history" onclick="showView('history')">History</button>
+    </nav>
+    <button class="coach-link" onclick="openCoachPanel()">Coach Mode</button>
+      <button class="coach-link" onclick="doSignOut()">Sign Out</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===================== HOME ===================== -->
+  <div class="view active" id="view-home">
+    <div id="coach-message-banner" style="display:none; margin-bottom:14px;"></div>
+
+    <div class="card accent-charcoal" style="margin-bottom:14px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="togglePastMessages()">
+        <h3 style="margin:0;">Messages From Coach</h3>
+        <span class="small" id="past-messages-toggle-label">Show</span>
+      </div>
+      <div id="past-messages-list" style="display:none; margin-top:10px;"><p class="small">Loading...</p></div>
+    </div>
+
+    <div class="hero">
+      <span class="eyebrow" style="color:#FF6B7A;">Maddie's Training</span>
+      <h2 id="home-phase">Current Phase: Loading...</h2>
+      <div class="phase-line" id="home-phase-blurb"></div>
+      <p class="small" style="color:#C9C9C9; margin-top:8px;">"The goal is to leave the weight room better prepared for swimming — not exhausted from lifting."</p>
+      <button class="today-btn" onclick="goToToday()">Today's Workout &rarr;</button>
+      <div class="week-row" id="home-week"></div>
+    </div>
+    <div class="card accent-red" id="home-meet-week" style="display:none; margin-top:14px;"></div>
+    <div class="card accent-red">
+      <h3>Upcoming Meet</h3>
+      <div id="home-next-meet" class="small" style="margin-top:6px;"></div>
+    </div>
+    <div class="card accent-red" style="margin-top:14px;">
+      <span class="eyebrow">Your Goals</span>
+      <h3 style="margin-top:6px;">What This Season Is Building Toward</h3>
+      <div class="grid grid-3" style="margin-top:10px;">
+        <div class="card accent-charcoal" style="text-align:center;"><p style="font-size:17px; font-weight:800; color:var(--charcoal);">State</p><p class="small" style="margin-top:2px;">100 Back</p></div>
+        <div class="card accent-charcoal" style="text-align:center;"><p style="font-size:17px; font-weight:800; color:var(--charcoal);">1:01 to 1:00</p><p class="small" style="margin-top:2px;">100 Back</p></div>
+        <div class="card accent-charcoal" style="text-align:center;"><p style="font-size:17px; font-weight:800; color:var(--charcoal);">Proud</p><p class="small" style="margin-top:2px;">How you finish</p></div>
+      </div>
+      <p class="small" style="margin-top:10px;"><strong>Also:</strong> stronger underwaters, a faster backstroke flip turn, and a strong last 50. Your events: 100 back, 200 back and 100 free.</p>
+      <p class="small" style="margin-top:6px;"><strong>How lifting helps:</strong> glutes, hamstrings and back extensions for your underwater kick and push-offs &middot; lats, rows and triceps for your backstroke pull &middot; core for a quicker turn &middot; legs for every wall.</p>
+      <p class="small" style="margin-top:6px;"><strong>Track it:</strong> the Progress tab shows your starting and current weights, so you can see yourself getting stronger.</p>
+    </div>
+    <div class="card accent-charcoal" style="margin-top:14px;">
+      <h3>If You&rsquo;re Running Low</h3>
+      <p class="small" style="margin-top:6px;">Cheer, school and swimming add up. On a day you&rsquo;re wiped, do the first three exercises and call it a win. A short day still counts, and you&rsquo;re never in trouble for it. Use the check-in to tell me how you&rsquo;re feeling.</p>
+    </div>
+    <div class="card accent-charcoal" style="margin-top:14px;">
+      <h3>What Counts As A Win Here</h3>
+      <p class="small" style="margin-top:6px;">You don't have to be perfect. You just have to show up, execute the plan, and get 1% better. The goal isn't to leave the weight room exhausted — it's to leave knowing you accomplished something.</p>
+    </div>
+    <div class="card accent-charcoal" id="thisweek-card" style="display:none; margin-top:14px;"></div>
+  </div>
+
+  <!-- ===================== WORKOUTS ===================== -->
+  <div class="view" id="view-workouts">
+    <span class="eyebrow">The Program</span>
+    <h2 style="font-size:19px;">Workouts</h2>
+    <p class="lede">Pick a phase, pick a day.</p>
+    <div class="tabs" id="phase-tabs" style="margin-top:14px;"></div>
+    <div class="tabs" id="day-tabs"></div>
+    <div id="workout-content"></div>
+  </div>
+
+  <!-- ===================== CALENDAR ===================== -->
+  <div class="view" id="view-calendar">
+    <span class="eyebrow">Season At A Glance</span>
+    <h2 style="font-size:19px;">Calendar</h2>
+    <p class="lede">Tap a date for details. Nov 2026 &ndash; Mar 2027.</p>
+    <div class="card" style="margin-top:12px;">
+      <div class="cal-controls">
+        <button class="cal-nav-btn" id="cal-prev" onclick="calShift(-1)">&larr;</button>
+        <div class="cal-month-label" id="cal-label"></div>
+        <button class="cal-nav-btn" id="cal-next" onclick="calShift(1)">&rarr;</button>
+      </div>
+      <div class="cal-grid" id="cal-dow-row"></div>
+      <div class="cal-grid" id="cal-grid" style="margin-top:4px;"></div>
+      <div class="cal-legend">
+        <span><i class="dot" style="background:rgba(200,16,46,0.5);"></i> Lift</span>
+        <span><i class="dot" style="background:rgba(181,121,10,0.6);"></i> Meet</span>
+        <span><i class="dot" style="background:rgba(29,111,165,0.5);"></i> Taper</span>
+        <span><i class="dot" style="background:var(--charcoal);"></i> Phase Starts</span>
+      </div>
+    </div>
+    <div class="card accent-red" id="cal-detail" style="margin-top:12px;">
+      <p class="small">Tap a date above to see what's happening that day.</p>
+    </div>
+    <div class="card" style="margin-top:12px;">
+      <p class="small">Individual high school meets aren't on here yet &mdash; those get added closer to the HS season. Everything shown right now is the shared team schedule.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PROGRESS ===================== -->
+  <div class="view" id="view-progress">
+    <span class="eyebrow">Keep It Simple</span>
+    <h2 style="font-size:19px;">Progress</h2>
+    <p class="lede">Fill in your starting number and today's number for each lift. Bar fills as you get stronger.</p>
+    <div class="grid grid-2" id="progress-grid" style="margin-top:14px;"></div>
+  </div>
+
+  <!-- ===================== TRAINING RULES ===================== -->
+  <div class="view" id="view-rules">
+    <span class="eyebrow">How We Train</span>
+    <h2 style="font-size:19px;">Training Rules</h2>
+    <p class="lede">A few simple ideas behind every workout on this site &mdash; not rules being handed down, just the reasoning so you know why it's built this way.</p>
+    <div class="grid grid-2" style="margin-top:14px;">
+      <div class="card accent-red"><h3>Pool First</h3><p class="small" style="margin-top:6px;">Lifting supports swimming &mdash; it should not interfere with swim performance. If lifting makes you worse at practice, the workout was too much.</p></div>
+      <div class="card accent-charcoal"><h3>No Failure</h3><p class="small" style="margin-top:6px;">Do not train to failure. Finish normal strength sets with roughly 2&ndash;3 good reps left.</p></div>
+      <div class="card accent-red"><h3>Quality Over Weight</h3><p class="small" style="margin-top:6px;">Perfect technique and controlled reps matter more than adding weight. More weight is not automatically better.</p></div>
+      <div class="card accent-charcoal"><h3>Don't Chase Soreness</h3><p class="small" style="margin-top:6px;">The goal is to get stronger and more explosive, not to be extremely sore.</p></div>
+      <div class="card accent-red"><h3>Explosive = Explosive</h3><p class="small" style="margin-top:6px;">For jumps and other power exercises, stop if speed, jump height, or landing quality starts to decline.</p></div>
+      <div class="card accent-charcoal"><h3>30&ndash;45 Minutes</h3><p class="small" style="margin-top:6px;">Short on purpose. Each day is built to fit 30 to 45 minutes so lifting fits around cheer and school. Challenging but manageable: most sets should end with about 2 good reps left, so you never feel burned out.</p></div>
+      <div class="card accent-red"><h3>Warm Up First</h3><p class="small" style="margin-top:6px;">Stretch and warm up before lifting, every time. Prehab is better than rehab &mdash; a few minutes now protects you from missing weeks later.</p></div>
+      <div class="card accent-charcoal"><h3>You Don't Need To Prove Anything</h3><p class="small" style="margin-top:6px;">You don't need to lift to failure to prove you belong. A successful session is one that makes you better at swimming, not one that leaves you the most wrecked.</p></div>
+    </div>
+    <div class="card accent-red" style="margin-top:14px;">
+      <h3>Listen To Your Body</h3>
+      <p class="small" style="margin-top:6px;">If swim fatigue is unusually high, communicate with the coach and adjust rather than forcing the workout. That's not weakness &mdash; that's smart training.</p>
+    </div>
+    <div class="card accent-charcoal" style="margin-top:14px;">
+      <h3>Why The Program Changes</h3>
+      <p class="small" style="margin-top:6px;">Phase 1 builds a base and teaches you the lifts. Phase 2 is where your strength numbers should move. Phase 3 holds that strength with less volume so you feel fresh for sectionals, districts and state &mdash; it should feel shorter and sharper, not harder.</p>
+    </div>
+  </div>
+
+  <!-- ===================== HISTORY (Supabase) ===================== -->
+  <div class="view" id="view-history">
+    <span class="eyebrow">Permanent Record</span>
+    <h2 style="font-size:19px;">History</h2>
+    <p class="lede">Every completed workout, saved to the cloud &mdash; visible from any device, newest first.</p>
+    <div id="history-status" class="card accent-charcoal" style="margin-top:14px;"><p class="small">Loading history&hellip;</p></div>
+    <div id="history-list" style="margin-top:14px;"></div>
+  </div>
+
+  <div class="footer">Maddie's Training &middot; Mon/Wed/Fri lifting &middot; Nov 2026 &ndash; Mar 2027 &middot; Fields reset when you close the page unless you write your numbers down.</div>
+</div>
+
+<!-- ===================== COACH MODE PANEL ===================== -->
+<!-- ===================== LOGIN GATE ===================== -->
+<div id="login-panel" style="position:fixed; inset:0; background:var(--charcoal); z-index:200; display:flex; align-items:center; justify-content:center; padding:20px;">
+  <div class="card" style="max-width:380px; width:100%;">
+    <h3>Sign In</h3>
+    <p class="small" id="login-subtitle" style="margin-top:6px;">Sign in with your own account.</p>
+    <label class="field-label" style="margin-top:12px;">Email</label>
+    <input class="field" id="login-email" type="email" placeholder="you@example.com">
+    <label class="field-label" style="margin-top:10px;">Password</label>
+    <input class="field" id="login-password" type="password" placeholder="Password">
+    <button class="complete-btn" style="margin-top:14px;" onclick="doSignIn()">Sign In</button>
+    <p class="small" id="login-status" style="margin-top:10px; color:var(--red-deep);"></p>
+  </div>
+</div>
+
+<div id="coach-panel">
+  <div class="coach-box">
+    <h3>Coach Mode</h3>
+    <p class="small">This is the entire program &mdash; exercises, sets, reps, rest, cues, meets, phase dates &mdash; as editable text. Change anything below, hit <strong>Apply</strong> to preview it live on the site right now. Changes made here reset when the page reloads &mdash; to make them permanent, hit <strong>Copy</strong> and send the text back so the CONFIG section of the file can be updated for good, or paste it directly into the CONFIG block near the top of the file's &lt;script&gt; in any text editor.</p>
+    <textarea id="coach-json"></textarea>
+    <div class="coach-actions">
+      <button class="btn-apply" onclick="applyCoachEdits()">Apply</button>
+      <button class="btn-copy" onclick="copyCoachJson()">Copy</button>
+      <button class="btn-close" onclick="closeCoachPanel()">Close</button>
+    </div>
+    <p class="small" id="coach-status" style="margin-top:8px;"></p>
+  </div>
+</div>
+
+<script>
+/* =========================================================================
+   COACH: EDIT ANYTHING BELOW THIS LINE.
+   This single CONFIG object drives the entire site — exercises, sets,
+   reps, rest, cues, meets, tapers, and phase date ranges. Change values
+   here (in this file, in any text editor) and the site updates — no
+   rebuild needed. You can also use the in-page "Coach Mode" button to
+   preview edits live before committing them here permanently.
+   ========================================================================= */
+var CONFIG = {
+  seasonStart: "2026-11-04",
+  seasonEnd:   "2027-03-21",
+
+  phaseBlocks: [
+    {phase:1, start:"2026-11-04", end:"2026-12-13", label:"Phase 1: Build",    blurb:"Build a base, learn the lifts, and find chest and tricep positions that feel good. Short sessions, steady progress."},
+    {phase:2, start:"2026-12-14", end:"2027-01-31", label:"Phase 2: Strength", blurb:"Heavier weight and fewer reps, so your pulling, hips and legs get stronger for the second half of the season."},
+    {phase:3, start:"2027-02-01", end:"2027-03-21", label:"Phase 3: Peak",     blurb:"Hold your strength with less volume so you feel fresh for sectionals, districts and state."}
+  ],
+
+  // Shared team meets. High school meets (Eaton sectionals, districts, state) get added once the dates are confirmed.
+  meets: [
+    {start:"2026-11-06", end:"2026-11-08", label:"Fort Wayne Invite"},
+    {start:"2026-11-13", end:"2026-11-15", label:"Mason Meet"},
+    {start:"2026-12-11", end:"2026-12-13", label:"Holiday Classic"},
+    {start:"2027-03-04", end:"2027-03-07", label:"Senior Champs"}
+  ],
+
+  tapers: [
+    {start:"2026-12-08", end:"2026-12-10", label:"Taper: Holiday Classic"}
+  ],
+
+  // A "modified" entry that has a plan{} shows that exact reduced workout, with weight targets worked out
+  // from the athlete's own logged weights. primerOn:true on a no-lift entry swaps in its primerPlan instead.
+  liftOverrides: [
+    {start:"2026-11-06", end:"2026-11-06", mode:"no-lift", label:"No Lift — Fort Wayne Invite"},
+    {start:"2026-11-13", end:"2026-11-13", mode:"no-lift", label:"No Lift — Mason Meet"},
+    {start:"2026-12-09", end:"2026-12-09", mode:"modified", label:"Meet-Week Lift — Holiday Classic",
+      plan:{
+        "chip": "Meet-Week Lift",
+        "title": "Meet-Week Lift",
+        "intro": "Racing is close, so today's lift is about half the normal sets. Keep the weight close to normal (your targets are on each exercise), stop every set with 3 or more reps left, and move the bar fast and crisp. The goal is to feel sharp for racing, not worked.",
+        "dropped": [
+          "Machine Chest Press",
+          "Cable Tricep Pushdown"
+        ],
+        "homeNote": "about half the normal sets at near-normal weight. Open it that day to see your exact weights.",
+        "exercises": [
+          {"name": "Lat Pulldown", "sets": 2, "loadPct": 85},
+          {"name": "Seated Cable Row", "sets": 2, "loadPct": 85},
+          {"name": "Face Pull", "sets": 2, "loadPct": 100},
+          {"name": "DB Curl", "sets": 2, "loadPct": 90}
+        ]
+      }},
+    // Friday of the meet: the default is NO LIFT. To offer the short primer instead, change primerOn to true.
+    {start:"2026-12-11", end:"2026-12-11", mode:"no-lift", label:"No Lift — Holiday Classic",
+      primerOn:false,
+      primerLabel:"Optional Primer — Holiday Classic",
+      primerPlan:{
+        "chip": "Primer",
+        "title": "Optional Primer",
+        "intro": "A short, light, fast activation, about 20 minutes. Nothing here should make you sore or tired. Do it in the morning, only if your coach said go, and skip it if you feel flat or beat up.",
+        "dropped": [],
+        "homeNote": "optional 20-minute primer, only if your coach says go.",
+        "exercises": [
+          {"name": "Leg Press", "sets": 2, "reps": ["3","3"], "rest": "90 sec", "loadPct": 60, "cue": "Light and fast. Drive up quickly and stop with plenty left."},
+          {"name": "Lat Pulldown", "sets": 2, "reps": ["3","3"], "rest": "90 sec", "loadPct": 60, "cue": "Light and fast. Pull quickly and stop with plenty left."}
+        ]
+      }},
+    {start:"2027-03-05", end:"2027-03-05", mode:"no-lift", label:"No Lift — Senior Champs"}
+  ],
+
+  hsChampionships: "Individual high school meets will be added closer to the HS season.",
+  athleteName: "Maddie Peace",
+
+  program: {
+    1: {
+      mon: {label:"Legs + Core", note:"Legs are one of your favorites, so we start the week there. Machines and the Smith machine keep it simple while you learn what heavier feels like. Short on purpose: about 30 to 40 minutes.", exercises:[
+        {type:"sets", name:"Smith Machine Squat", sets:["10","10","10"], rest:"90 sec", cue:"Feet slightly in front of the bar, sit back and down until your thighs are about parallel, then drive up through your whole foot. The machine guides the bar, so you can focus on your legs and your form. No Smith machine? Use the leg press or a goblet squat."},
+        {type:"sets", name:"Hip Thrust", sets:["10","10","10"], rest:"90 sec", cue:"Upper back on a bench, with the bar, a Smith machine or a padded dumbbell across your hips. Drive through your heels and squeeze hard at the top. This is the hip drive behind your underwater dolphin kick and every wall push-off. No bench? Do glute bridges on the floor."},
+        {type:"sets", name:"Leg Curl", sets:["12","12"], rest:"60 sec", cue:"Controlled, full range, slow on the way down. Strong hamstrings and glutes help your underwaters and push-offs."},
+        {type:"sets", name:"Standing Calf Raise", sets:["12","12"], rest:"45 sec", cue:"Full range, pause at the top. Strong ankles help your kick and your push-offs."},
+        {type:"sets", name:"Plank", sets:[":30",":30"], rest:"30 sec", cue:"Ribs down, glutes tight, long body line. This is your streamline position."},
+        {type:"sets", name:"Side Plank", sets:[":30/side",":30/side"], rest:"30 sec", cue:"Straight line from head to feet. Stay tight and breathe normally."}
+      ]},
+      wed: {label:"Back + Arms", note:"Back and biceps are your favorites, and your backstroke pull starts here. We add a little chest and triceps in positions you control, so you can learn to like them at your own pace.", exercises:[
+        {type:"sets", name:"Lat Pulldown", sets:["10","10","10"], rest:"75 sec", cue:"Pull your elbows down toward your ribs, controlled return. This is the same muscle that powers your backstroke pull."},
+        {type:"sets", name:"Seated Cable Row", sets:["10","10","10"], rest:"75 sec", cue:"Chest tall, squeeze your shoulder blades together, controlled return."},
+        {type:"sets", name:"Machine Chest Press", sets:["10","10"], rest:"75 sec", cue:"Seated, not lying down, so you control the position. Adjust the seat so the handles line up with mid-chest, press smoothly, and stop short of locking out. Start light. No machine? Use a standing cable press or incline push-ups."},
+        {type:"sets", name:"Face Pull", sets:["15","15"], rest:"60 sec", cue:"Light load, pull toward your face with your elbows high. These keep your shoulders healthy for all that backstroke."},
+        {type:"sets", name:"Cable Tricep Pushdown", sets:["12","12"], rest:"60 sec", cue:"Standing, elbows pinned to your sides, full extension at the bottom. Triceps are the finish of your backstroke pull, and this is a position you control. No cable? Use a band pushdown."},
+        {type:"sets", name:"DB Curl", sets:["10","10"], rest:"60 sec", cue:"Elbows pinned to your sides, full range, no swinging."}
+      ]},
+      fri: {label:"Full Body + Turns", note:"A short full-body day: legs, pulling and core. The hips and core work here are what help your underwaters and your flip turn.", exercises:[
+        {type:"sets", name:"Leg Press", sets:["10","10","10"], rest:"90 sec", cue:"Hips stay on the pad, controlled lowering, don't lock out your knees. No leg press? Use the Smith machine squat."},
+        {type:"pullup", name:"Assisted Pull-Ups", sets:3, rest:"90 sec", cue:"Use enough assistance that every rep is smooth and your chin gets over the bar. Log the assistance weight. Over time, aim for more reps with less assistance."},
+        {type:"sets", name:"DB Romanian Deadlift", sets:["10","10"], rest:"90 sec", cue:"Hips back, flat back, the dumbbells slide down your thighs. You should feel your hamstrings. This builds the hips behind your underwaters."},
+        {type:"sets", name:"Incline Push-Up", sets:["10","10"], rest:"60 sec", cue:"Hands on a bench or on the Smith bar set around hip height, body in one straight line. Lower your chest toward your hands and press away. The higher your hands, the easier it is, so lower the bar over time. No lying down needed."},
+        {type:"sets", name:"Back Extension", sets:["12","12"], rest:"60 sec", cue:"Controlled up and down. Your hips and low back do the work, and this builds the strength behind your underwater kick. Stop if your low back feels pinchy. No bench? Do floor supermans."},
+        {type:"sets", name:"Reverse Crunch", sets:["12","12"], rest:"45 sec", cue:"Lie on your back, bring your knees toward your chest and curl your hips off the floor, slowly. No swinging. This is the same tuck as your backstroke flip turn."}
+      ]}
+    },
+    2: {
+      mon: {label:"Legs + Core", note:"Same lifts, heavier. Add weight only when every rep is clean. You now know the movements, so this is where your numbers should move.", exercises:[
+        {type:"sets", name:"Smith Machine Squat", sets:["6","6","6"], rest:"2 min", cue:"Feet slightly in front of the bar, sit back and down until your thighs are about parallel, then drive up through your whole foot. The machine guides the bar, so you can focus on your legs and your form. No Smith machine? Use the leg press or a goblet squat. Drive it up with intent, lower under control."},
+        {type:"sets", name:"Hip Thrust", sets:["6","6","6"], rest:"2 min", cue:"Upper back on a bench, with the bar, a Smith machine or a padded dumbbell across your hips. Drive through your heels and squeeze hard at the top. This is the hip drive behind your underwater dolphin kick and every wall push-off. No bench? Do glute bridges on the floor. Drive it up with intent, lower under control."},
+        {type:"sets", name:"Leg Curl", sets:["10","10","10"], rest:"60 sec", cue:"Controlled, full range, slow on the way down. Strong hamstrings and glutes help your underwaters and push-offs."},
+        {type:"sets", name:"Standing Calf Raise", sets:["10","10"], rest:"45 sec", cue:"Full range, pause at the top. Strong ankles help your kick and your push-offs."},
+        {type:"sets", name:"Side Plank", sets:[":30/side",":30/side"], rest:"30 sec", cue:"Straight line from head to feet. Stay tight and breathe normally."}
+      ]},
+      wed: {label:"Back + Arms", note:"Heavier pulling for your backstroke, plus chest and triceps in the same comfortable positions as before.", exercises:[
+        {type:"sets", name:"Lat Pulldown", sets:["8","8","8"], rest:"2 min", cue:"Pull your elbows down toward your ribs, controlled return. This is the same muscle that powers your backstroke pull. Drive it up with intent, lower under control."},
+        {type:"sets", name:"Seated Cable Row", sets:["8","8","8"], rest:"90 sec", cue:"Chest tall, squeeze your shoulder blades together, controlled return. Drive it up with intent, lower under control."},
+        {type:"sets", name:"Machine Chest Press", sets:["8","8"], rest:"90 sec", cue:"Seated, not lying down, so you control the position. Adjust the seat so the handles line up with mid-chest, press smoothly, and stop short of locking out. Start light. No machine? Use a standing cable press or incline push-ups."},
+        {type:"sets", name:"Face Pull", sets:["15","15"], rest:"60 sec", cue:"Light load, pull toward your face with your elbows high. These keep your shoulders healthy for all that backstroke."},
+        {type:"sets", name:"Cable Tricep Pushdown", sets:["10","10"], rest:"60 sec", cue:"Standing, elbows pinned to your sides, full extension at the bottom. Triceps are the finish of your backstroke pull, and this is a position you control. No cable? Use a band pushdown."},
+        {type:"sets", name:"DB Curl", sets:["8","8","8"], rest:"60 sec", cue:"Elbows pinned to your sides, full range, no swinging."}
+      ]},
+      fri: {label:"Full Body + Turns", note:"A short, heavier full-body day. Pull-ups and legs get the focus, and the core work keeps your turns quick.", exercises:[
+        {type:"sets", name:"Leg Press", sets:["8","8","8"], rest:"2 min", cue:"Hips stay on the pad, controlled lowering, don't lock out your knees. No leg press? Use the Smith machine squat. Drive it up with intent, lower under control."},
+        {type:"pullup", name:"Assisted Pull-Ups", sets:3, rest:"2 min", cue:"Use enough assistance that every rep is smooth and your chin gets over the bar. Log the assistance weight. Over time, aim for more reps with less assistance. Drive it up with intent, lower under control."},
+        {type:"sets", name:"DB Romanian Deadlift", sets:["8","8","8"], rest:"2 min", cue:"Hips back, flat back, the dumbbells slide down your thighs. You should feel your hamstrings. This builds the hips behind your underwaters."},
+        {type:"sets", name:"Incline Push-Up", sets:["10","10"], rest:"60 sec", cue:"Hands on a bench or on the Smith bar set around hip height, body in one straight line. Lower your chest toward your hands and press away. The higher your hands, the easier it is, so lower the bar over time. No lying down needed."},
+        {type:"sets", name:"Back Extension", sets:["12","12"], rest:"60 sec", cue:"Controlled up and down. Your hips and low back do the work, and this builds the strength behind your underwater kick. Stop if your low back feels pinchy. No bench? Do floor supermans."},
+        {type:"sets", name:"Reverse Crunch", sets:["12","12"], rest:"45 sec", cue:"Lie on your back, bring your knees toward your chest and curl your hips off the floor, slowly. No swinging. This is the same tuck as your backstroke flip turn."}
+      ]}
+    },
+    3: {
+      mon: {label:"Legs + Core", note:"Lower volume on purpose, so you hold your strength and feel fresh for sectionals, districts and state.", exercises:[
+        {type:"sets", name:"Smith Machine Squat", sets:["6","6"], rest:"2 min", cue:"Feet slightly in front of the bar, sit back and down until your thighs are about parallel, then drive up through your whole foot. The machine guides the bar, so you can focus on your legs and your form. No Smith machine? Use the leg press or a goblet squat. Drive it up with intent, lower under control."},
+        {type:"sets", name:"Hip Thrust", sets:["6","6"], rest:"2 min", cue:"Upper back on a bench, with the bar, a Smith machine or a padded dumbbell across your hips. Drive through your heels and squeeze hard at the top. This is the hip drive behind your underwater dolphin kick and every wall push-off. No bench? Do glute bridges on the floor. Drive it up with intent, lower under control."},
+        {type:"sets", name:"Leg Curl", sets:["10","10"], rest:"60 sec", cue:"Controlled, full range, slow on the way down. Strong hamstrings and glutes help your underwaters and push-offs."},
+        {type:"sets", name:"Standing Calf Raise", sets:["10","10"], rest:"45 sec", cue:"Full range, pause at the top. Strong ankles help your kick and your push-offs."},
+        {type:"sets", name:"Side Plank", sets:[":30/side",":30/side"], rest:"30 sec", cue:"Straight line from head to feet. Stay tight and breathe normally."}
+      ]},
+      wed: {label:"Back + Arms", note:"Hold your pulling strength with less volume. Short, sharp and fresh.", exercises:[
+        {type:"sets", name:"Lat Pulldown", sets:["6","6","6"], rest:"2 min", cue:"Pull your elbows down toward your ribs, controlled return. This is the same muscle that powers your backstroke pull. Drive it up with intent, lower under control."},
+        {type:"sets", name:"Seated Cable Row", sets:["8","8"], rest:"90 sec", cue:"Chest tall, squeeze your shoulder blades together, controlled return."},
+        {type:"sets", name:"Machine Chest Press", sets:["8","8"], rest:"90 sec", cue:"Seated, not lying down, so you control the position. Adjust the seat so the handles line up with mid-chest, press smoothly, and stop short of locking out. Start light. No machine? Use a standing cable press or incline push-ups."},
+        {type:"sets", name:"Face Pull", sets:["15","15"], rest:"60 sec", cue:"Light load, pull toward your face with your elbows high. These keep your shoulders healthy for all that backstroke."},
+        {type:"sets", name:"Cable Tricep Pushdown", sets:["10","10"], rest:"60 sec", cue:"Standing, elbows pinned to your sides, full extension at the bottom. Triceps are the finish of your backstroke pull, and this is a position you control. No cable? Use a band pushdown."},
+        {type:"sets", name:"DB Curl", sets:["8","8"], rest:"60 sec", cue:"Elbows pinned to your sides, full range, no swinging."}
+      ]},
+      fri: {label:"Full Body + Turns", note:"A short full-body day to close the week. Built to leave you fresh, not fried.", exercises:[
+        {type:"sets", name:"Leg Press", sets:["6","6"], rest:"2 min", cue:"Hips stay on the pad, controlled lowering, don't lock out your knees. No leg press? Use the Smith machine squat. Drive it up with intent, lower under control."},
+        {type:"pullup", name:"Assisted Pull-Ups", sets:2, rest:"2 min", cue:"Use enough assistance that every rep is smooth and your chin gets over the bar. Log the assistance weight. Over time, aim for more reps with less assistance."},
+        {type:"sets", name:"DB Romanian Deadlift", sets:["8","8"], rest:"2 min", cue:"Hips back, flat back, the dumbbells slide down your thighs. You should feel your hamstrings. This builds the hips behind your underwaters."},
+        {type:"sets", name:"Incline Push-Up", sets:["10","10"], rest:"60 sec", cue:"Hands on a bench or on the Smith bar set around hip height, body in one straight line. Lower your chest toward your hands and press away. The higher your hands, the easier it is, so lower the bar over time. No lying down needed."},
+        {type:"sets", name:"Back Extension", sets:["10","10"], rest:"60 sec", cue:"Controlled up and down. Your hips and low back do the work, and this builds the strength behind your underwater kick. Stop if your low back feels pinchy. No bench? Do floor supermans."},
+        {type:"sets", name:"Reverse Crunch", sets:["12","12"], rest:"45 sec", cue:"Lie on your back, bring your knees toward your chest and curl your hips off the floor, slowly. No swinging. This is the same tuck as your backstroke flip turn."}
+      ]}
+    }
+  },
+
+  progressLifts: ["Smith Machine Squat","Hip Thrust","Lat Pulldown","Seated Cable Row","Assisted Pull-Ups","Leg Press"]
+};
+/* ========================= END COACH-EDITABLE SECTION ===================== */
+
+(function applyPrimerChoice(){
+  (CONFIG.liftOverrides || []).forEach(function(o){
+    if (o.primerPlan && o.primerOn){
+      o.mode = 'modified';
+      o.plan = o.primerPlan;
+      if (o.primerLabel) o.label = o.primerLabel;
+    }
+  });
+})();
+
+(function(){
+  var DAY_KEYS = {1:'mon', 3:'wed', 5:'fri'};
+  var DAY_NAMES = {mon:'Monday', wed:'Wednesday', fri:'Friday'};
+  var state = { workoutPhase: null, workoutDay: null, calCursor: null };
+  var workoutLog = [];
+
+  // ---------------- SUPABASE ----------------
+  var SUPABASE_URL = "https://scjfzzcpiirhlmkamqcg.supabase.co";
+  var SUPABASE_ANON_KEY = "sb_publishable_v83BXXAIW3UoMrndPi4tCw_cMoaPbnR";
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  var auth = { user:null, role:null, athleteId:null };
+  var subtitleEl = document.getElementById('login-subtitle');
+  if (subtitleEl && CONFIG.athleteName) subtitleEl.textContent = CONFIG.athleteName + ' and Coach each sign in with their own account.';
+
+  window.doSignIn = async function(){
+    var email = document.getElementById('login-email').value.trim();
+    var password = document.getElementById('login-password').value;
+    var status = document.getElementById('login-status');
+    status.textContent = 'Signing in...';
+    var res = await sb.auth.signInWithPassword({ email:email, password:password });
+    if (res.error){ status.textContent = res.error.message; return; }
+    await loadProfileAndStart();
+  };
+
+  window.doSignOut = async function(){
+    await sb.auth.signOut();
+    location.reload();
+  };
+
+  async function loadProfileAndStart(){
+    var status = document.getElementById('login-status');
+    var sessionRes = await sb.auth.getSession();
+    var user = sessionRes.data.session ? sessionRes.data.session.user : null;
+    if (!user){ return; }
+    auth.user = user;
+    var profRes = await sb.from('profiles').select('role,athlete_id').eq('id', user.id).single();
+    if (profRes.error || !profRes.data){
+      var detail = profRes.error ? (profRes.error.message + ' (code: ' + (profRes.error.code||'none') + ')') : 'no matching row found';
+      if (status) status.textContent = 'Signed in (user id: ' + user.id + '), but profile lookup failed: ' + detail;
+      return;
+    }
+    auth.role = profRes.data.role;
+    auth.athleteId = profRes.data.athlete_id;
+    document.getElementById('login-panel').style.display = 'none';
+    initDashboard();
+  }
+
+  function parseDate(s){ var p=s.split('-'); return new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2])); }
+  function sameDay(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+  function inRange(d,s,e){ return d>=parseDate(s) && d<=parseDate(e); }
+  // Coach-only preview: open the page with ?preview=YYYY-MM-DD and sign in as coach to see it as that day.
+  var previewParam = (function(){ try { var m = (window.location.search || '').match(/[?&]preview=(\d{4}-\d{2}-\d{2})/); return m ? m[1] : null; } catch(e){ return null; } })();
+  function previewActive(){ return !!(previewParam && auth && auth.role === 'coach'); }
+  function showPreviewBanner(){
+    if (document.getElementById('preview-banner')) return;
+    var b = document.createElement('div');
+    b.id = 'preview-banner';
+    b.style.cssText = 'background:#B5790A; color:#fff; text-align:center; font-size:12.5px; font-weight:700; padding:8px 10px;';
+    b.textContent = 'PREVIEW (coach only): showing this page as it will look on ' + fmtLong(parseDate(previewParam)) + '. Nothing here saves.';
+    document.body.insertBefore(b, document.body.firstChild);
+  }
+  function todayMid(){
+    if (previewActive()) return parseDate(previewParam);
+    var d=new Date(); return new Date(d.getFullYear(),d.getMonth(),d.getDate());
+  }
+  function fmtLong(d){ return d.toLocaleDateString('en-US',{weekday:'long', month:'long', day:'numeric'}); }
+  function fmtShort(d){ return d.toLocaleDateString('en-US',{month:'short', day:'numeric'}); }
+
+  function getPhaseBlock(d){
+    for (var i=0;i<CONFIG.phaseBlocks.length;i++){ if (inRange(d, CONFIG.phaseBlocks[i].start, CONFIG.phaseBlocks[i].end)) return CONFIG.phaseBlocks[i]; }
+    return null;
+  }
+  function getMeet(d){
+    for (var i=0;i<CONFIG.meets.length;i++){ if (inRange(d, CONFIG.meets[i].start, CONFIG.meets[i].end)) return CONFIG.meets[i]; }
+    return null;
+  }
+  function getTaper(d){
+    for (var i=0;i<CONFIG.tapers.length;i++){ if (inRange(d, CONFIG.tapers[i].start, CONFIG.tapers[i].end)) return CONFIG.tapers[i]; }
+    return null;
+  }
+  function getLiftOverride(d){
+    if (!CONFIG.liftOverrides) return null;
+    for (var i=0;i<CONFIG.liftOverrides.length;i++){ if (inRange(d, CONFIG.liftOverrides[i].start, CONFIG.liftOverrides[i].end)) return CONFIG.liftOverrides[i]; }
+    return null;
+  }
+
+  // ---------------- MEET-WEEK PLANS ----------------
+  function getPlanOverride(d){
+    var ov = getLiftOverride(d);
+    return (ov && ov.mode==='modified' && ov.plan) ? ov : null;
+  }
+  function isPlanDateIso(iso){ return !!getPlanOverride(parseDate(iso)); }
+  function activePlanOverride(){
+    var today = todayMid(), block = getPhaseBlock(today), wd = today.getDay();
+    if (block && block.phase===state.workoutPhase && DAY_KEYS[wd]===state.workoutDay) return getPlanOverride(today);
+    return null;
+  }
+  function buildPlanExercises(day, ov){
+    var out = [];
+    ((ov && ov.plan && ov.plan.exercises) || []).forEach(function(item){
+      var base = null;
+      ((day && day.exercises) || []).forEach(function(e){ if (e.name===item.name) base = e; });
+      if (item.type === 'pullup'){
+        out.push({ type:'pullup', name:item.name, sets:item.sets, rest:(item.rest || (base && base.rest) || '2 min'),
+                   cue:(item.cue || 'Stop every set with 3 or more reps left. Fast, crisp reps.'),
+                   _pct:0, _noTarget:true, _hint:(item.hint || 'Use the same assistance as normal. Stop with 3 or more reps left.') });
+        return;
+      }
+      var reps = item.reps || ((base && Array.isArray(base.sets)) ? base.sets.slice() : []);
+      if (typeof reps === 'string') reps = [reps];
+      reps = reps.slice(0, item.sets);
+      while (reps.length < item.sets) reps.push(reps.length ? reps[reps.length-1] : '5');
+      out.push({
+        type:'sets', name:item.name, sets:reps,
+        rest: item.rest || (base && base.rest) || '2 min',
+        cue: item.cue || (base && base.cue) || 'Stop every set with 3 or more reps left. Fast, crisp reps.',
+        noWeight: !!(base && base.noWeight),
+        _pct: item.loadPct, _noTarget: !!item.noTarget, _hint: item.hint || ''
+      });
+    });
+    return out;
+  }
+  function parseWeightNum(w){
+    if (w === null || w === undefined) return NaN;
+    var s = String(w);
+    if (/body|bw/i.test(s)) return NaN;
+    var m = s.match(/\d+(\.\d+)?/);
+    return m ? parseFloat(m[0]) : NaN;
+  }
+  function roundTaperWeight(x){
+    return x >= 25 ? Math.round(x/5)*5 : Math.round(x/2.5)*2.5;
+  }
+  // sessions = top working weight per recent session, newest first.
+  function taperBase(sessions){
+    var s = sessions.slice(0,3);
+    if (!s.length) return {status:'none'};
+    if (s.length === 1) return {status:'ok', base:s[0], list:s};
+    for (var i=0;i<s.length-1;i++){
+      var hi = Math.max(s[i], s[i+1]), lo = Math.min(s[i], s[i+1]);
+      if (lo <= 0 || hi/lo > 1.3) return {status:'inconsistent', list:s};
+    }
+    return {status:'ok', base:s[0], list:s};
+  }
+  function renderTaperIntro(ov){
+    var p = ov.plan;
+    var h = '<div class="card accent-red"><h3>' + (p.title || 'Meet-Week Lift') + '</h3>';
+    h += '<p class="small" style="margin-top:6px;">' + p.intro + '</p>';
+    if (p.dropped && p.dropped.length) h += '<p class="small" style="margin-top:6px;"><strong>Skipping this week:</strong> ' + p.dropped.join(', ') + '.</p>';
+    h += '</div>';
+    return h;
+  }
+  function renderTaperExercise(ex, idx){
+    var h = (ex.type === 'pullup' && typeof renderPullupExercise === 'function') ? renderPullupExercise(ex) : renderSetsExercise(ex, idx);
+    var t;
+    if (ex._noTarget || !(ex._pct > 0)) t = '<div class="taper-target">' + (ex._hint || 'Same as normal, or a little lighter.') + '</div>';
+    else t = '<div class="taper-target" data-taper-name="' + ex.name.replace(/"/g,'&quot;') + '" data-taper-pct="' + ex._pct + '">Working out your target&hellip;</div>';
+    return h.replace('<div class="ex-last">', t + '<div class="ex-last">');
+  }
+  async function loadTaperTargets(){
+    var els = document.querySelectorAll('#workout-content .taper-target[data-taper-name]');
+    if (!els.length) return;
+    function askAll(){ els.forEach(function(el){ el.className = 'taper-target ask'; el.textContent = "Ask your coach for today's weights."; }); }
+    try {
+      var scopedId = await resolveSiteAthleteId();
+      if (!scopedId){ askAll(); return; }
+      var wres = await sb.from('workouts').select('id,workout_date')
+        .eq('athlete_id', scopedId).eq('completed', true).lt('workout_date', todayIso())
+        .order('workout_date', {ascending:false}).limit(40);
+      var rows = ((wres && wres.data) || []).filter(function(w){ return !isPlanDateIso(w.workout_date); });
+      var order = rows.map(function(w){ return w.id; });
+      var names = [];
+      els.forEach(function(el){ names.push(el.getAttribute('data-taper-name')); });
+      var sets = [];
+      if (order.length){
+        var sres = await sb.from('workout_sets').select('workout_id,exercise,weight').in('workout_id', order).in('exercise', names);
+        sets = (sres && sres.data) || [];
+      }
+      els.forEach(function(el){
+        var name = el.getAttribute('data-taper-name');
+        var pct = parseFloat(el.getAttribute('data-taper-pct'));
+        var perWorkout = {};
+        sets.forEach(function(s){
+          if (s.exercise !== name) return;
+          var n = parseWeightNum(s.weight);
+          if (!(n > 0)) return;
+          if (!perWorkout[s.workout_id] || n > perWorkout[s.workout_id]) perWorkout[s.workout_id] = n;
+        });
+        var sessions = [];
+        order.forEach(function(id){ if (perWorkout[id]) sessions.push(perWorkout[id]); });
+        var res = taperBase(sessions);
+        if (res.status === 'none'){
+          el.className = 'taper-target ask';
+          el.textContent = 'No logged weight yet for this one. Start light and ask your coach.';
+        } else if (res.status === 'inconsistent'){
+          el.className = 'taper-target ask';
+          el.textContent = "Ask your coach for today's weight. Your last logs don't line up: " + res.list.join(', ') + '.';
+        } else {
+          var target = roundTaperWeight(res.base * pct / 100);
+          el.className = 'taper-target';
+          el.innerHTML = 'Target: about <strong>' + target + ' lb</strong> ' + (pct >= 100 ? '(your normal weight)' : '(' + pct + '% of your last ' + res.base + ')');
+        }
+      });
+    } catch(e){ askAll(); }
+  }
+
+  function isLiftDate(d){
+    var wd = d.getDay();
+    return (wd===1||wd===3||wd===5) && inRange(d, CONFIG.seasonStart, CONFIG.seasonEnd);
+  }
+  function addDays(d, n){ var r = new Date(d); r.setDate(r.getDate()+n); return r; }
+  function nextMeet(today){
+    var upcoming = CONFIG.meets.filter(function(m){ return parseDate(m.end) >= today; });
+    upcoming.sort(function(a,b){ return parseDate(a.start)-parseDate(b.start); });
+    return upcoming[0] || null;
+  }
+
+  // ---------------- VIEW SWITCHING ----------------
+  window.showView = function(name){
+    document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+    document.getElementById('view-'+name).classList.add('active');
+    document.querySelectorAll('nav.pillnav button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-view')===name); });
+    if (name==='calendar') renderCalendar();
+    if (name==='progress') renderProgress();
+    if (name==='history') renderHistory();
+  };
+
+  window.goToToday = function(){
+    var today = todayMid();
+    var block = getPhaseBlock(today);
+    var wd = today.getDay();
+    var dayKey = DAY_KEYS[wd];
+    if (block && dayKey){
+      selectPhase(block.phase);
+      selectDay(dayKey);
+    } else {
+      selectPhase(block ? block.phase : 1);
+      selectDay('mon');
+    }
+    showView('workouts');
+  };
+
+  // ---------------- HOME ----------------
+  // ---------------- COACH MESSAGES ----------------
+  function dismissedMessageKey(){
+    return 'dismissed_msg_' + (auth.athleteId || 'anon');
+  }
+
+  async function renderCoachMessageBanner(){
+    var el = document.getElementById('coach-message-banner');
+    if (!el) return;
+    var scopedId = await resolveSiteAthleteId();
+    var res = await sb.from('coach_messages').select('id,message,created_at,target_athlete_id')
+      .or('target_athlete_id.is.null' + (scopedId ? ',target_athlete_id.eq.' + scopedId : ''))
+      .order('created_at', {ascending:false}).limit(1);
+    if (res.error || !res.data || !res.data.length) return;
+    var latest = res.data[0];
+    var dismissedId = null;
+    try { dismissedId = localStorage.getItem(dismissedMessageKey()); } catch(e){}
+    if (String(dismissedId) === String(latest.id)) return;
+
+    el.innerHTML =
+      '<div class="card accent-red" style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">' +
+      '<p class="small" style="margin:0;"><strong>Coach:</strong> ' + latest.message + '</p>' +
+      '<button class="coach-link" style="flex-shrink:0;" onclick="dismissCoachMessage(\'' + latest.id + '\')">Dismiss</button>' +
+      '</div>';
+    el.style.display = 'block';
+  }
+
+  window.dismissCoachMessage = function(id){
+    try { localStorage.setItem(dismissedMessageKey(), String(id)); } catch(e){}
+    var el = document.getElementById('coach-message-banner');
+    if (el) el.style.display = 'none';
+  };
+
+  var pastMessagesLoaded = false;
+  window.togglePastMessages = async function(){
+    var list = document.getElementById('past-messages-list');
+    var label = document.getElementById('past-messages-toggle-label');
+    if (!list) return;
+    var showing = list.style.display !== 'none';
+    if (showing){ list.style.display = 'none'; if (label) label.textContent = 'Show'; return; }
+    list.style.display = 'block';
+    if (label) label.textContent = 'Hide';
+    if (pastMessagesLoaded) return;
+    var scopedId = await resolveSiteAthleteId();
+    var res = await sb.from('coach_messages').select('message,created_at,target_athlete_id')
+      .or('target_athlete_id.is.null' + (scopedId ? ',target_athlete_id.eq.' + scopedId : ''))
+      .order('created_at', {ascending:false}).limit(20);
+    if (res.error){ list.innerHTML = '<p class="small">Could not load messages.</p>'; return; }
+    if (!res.data.length){ list.innerHTML = '<p class="small">No messages yet.</p>'; return; }
+    var html = '';
+    res.data.forEach(function(m){
+      var d = new Date(m.created_at);
+      html += '<div style="padding:8px 0; border-bottom:1px solid var(--line);"><p class="small" style="color:var(--slate-light); margin-bottom:2px;">' + d.toLocaleDateString() + '</p><p class="small">' + m.message + '</p></div>';
+    });
+    list.innerHTML = html;
+    pastMessagesLoaded = true;
+  };
+
+  // ---------------- CONSISTENCY CARD ----------------
+  // ---------------- THIS WEEK CARD ----------------
+  async function renderThisWeekCard(){
+    var el = document.getElementById('thisweek-card');
+    if (!el) return;
+    try {
+      var scopedId = await resolveSiteAthleteId();
+      if (!scopedId){ el.style.display = 'none'; return; }
+      var today = todayMid();
+      var thisMonday = addDays(today, -((today.getDay()+6)%7));
+      var weekEnd = addDays(thisMonday, 6);
+      var dates = [];
+      var d = new Date(thisMonday);
+      while (d <= weekEnd){
+        var wd = d.getDay();
+        if (wd===1||wd===3||wd===5){
+          var override = getLiftOverride(d);
+          if (!override || override.mode !== 'no-lift') dates.push(new Date(d));
+        }
+        d = addDays(d, 1);
+      }
+      if (!dates.length){ el.style.display = 'none'; return; }
+      var isoDates = dates.map(function(dt){
+        return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
+      });
+      var res = await sb.from('workouts').select('workout_date,completed,excused').eq('athlete_id', scopedId).in('workout_date', isoDates);
+      if (res.error){ el.style.display = 'none'; return; }
+      var byDate = {};
+      (res.data||[]).forEach(function(w){ byDate[w.workout_date] = w; });
+      var excusedCount = 0, completedCount = 0;
+      isoDates.forEach(function(iso){ if (byDate[iso] && byDate[iso].excused) excusedCount++; });
+      var total = isoDates.length - excusedCount;
+      isoDates.forEach(function(iso){ if (byDate[iso] && byDate[iso].completed && !byDate[iso].excused) completedCount++; });
+      if (total <= 0){ el.style.display = 'none'; return; }
+      var html = '<p class="consistency-label">This Week</p>';
+      html += '<div class="consistency-num-sm"><span class="consistency-big-sm">'+completedCount+'</span><span class="consistency-of"> of '+total+' lifts</span></div>';
+      html += '<p class="consistency-line">Showing up is the goal. You\'re doing that.</p>';
+      el.innerHTML = html;
+      el.style.display = 'block';
+    } catch(e){
+      el.style.display = 'none';
+    }
+  }
+
+  function renderHome(){
+    renderCoachMessageBanner();
+    renderThisWeekCard();
+    var today = todayMid();
+    var block = getPhaseBlock(today);
+    document.getElementById('home-phase').textContent = 'Current Phase: ' + (block ? block.label : (today < parseDate(CONFIG.seasonStart) ? 'Not Started Yet' : 'Season Complete'));
+    document.getElementById('home-phase-blurb').textContent = block ? block.blurb : (today < parseDate(CONFIG.seasonStart) ? ('Lifting begins ' + fmtLong(parseDate(CONFIG.seasonStart))) : 'Great season. Rest up.');
+
+    var mondayOffset = (today.getDay()===0) ? -6 : (1-today.getDay());
+    var thisMonday = addDays(today, mondayOffset);
+
+    var weekHtml = '';
+    [0,2,4].forEach(function(offset){
+      var d = addDays(thisMonday, offset);
+      var wd = d.getDay();
+      var key = DAY_KEYS[wd];
+      var label = DAY_NAMES[key].slice(0,3).toUpperCase();
+      var dayBlock = getPhaseBlock(d);
+      var phaseForChip = dayBlock ? dayBlock.phase : (block ? block.phase : 1);
+      var ov = isLiftDate(d) ? getLiftOverride(d) : null;
+      var focus, style = '';
+      if (ov && ov.mode==='no-lift'){ focus = 'No Lift'; style=' style="opacity:0.6;"'; }
+      else if (ov && ov.mode==='modified'){ focus = (ov.plan && ov.plan.chip) ? ov.plan.chip : 'Modified'; }
+      else { focus = (CONFIG.program[phaseForChip] && CONFIG.program[phaseForChip][key]) ? CONFIG.program[phaseForChip][key].label : ''; }
+      weekHtml += '<div class="week-chip"'+style+' onclick="selectPhase('+phaseForChip+');selectDay(\''+key+'\');showView(\'workouts\')"><div class="d">'+label+'</div><div class="f">'+focus+'</div></div>';
+    });
+    document.getElementById('home-week').innerHTML = weekHtml;
+
+    var mwLines = [], mwHasPlan = false;
+    [0,2,4].forEach(function(offset){
+      var d = addDays(thisMonday, offset);
+      if (!isLiftDate(d)) return;
+      var ov = getLiftOverride(d);
+      var nm = DAY_NAMES[DAY_KEYS[d.getDay()]];
+      if (ov && ov.mode==='modified' && ov.plan){ mwHasPlan = true; mwLines.push('<strong>'+nm+':</strong> '+ov.plan.title+' &mdash; '+(ov.plan.homeNote || 'a lighter lift. Open it that day.')); }
+      else if (ov && ov.mode==='no-lift') mwLines.push('<strong>'+nm+':</strong> '+ov.label);
+      else mwLines.push('<strong>'+nm+':</strong> normal lift');
+    });
+    var mwEl = document.getElementById('home-meet-week');
+    if (mwEl){
+      if (mwHasPlan){
+        mwEl.innerHTML = '<h3>Meet Week</h3>' + mwLines.map(function(x){ return '<p class="small" style="margin-top:6px;">'+x+'</p>'; }).join('');
+        mwEl.style.display = 'block';
+      } else { mwEl.style.display = 'none'; mwEl.innerHTML = ''; }
+    }
+
+    var nm = nextMeet(today);
+    document.getElementById('home-next-meet').innerHTML = nm
+      ? '<strong>'+nm.label+'</strong> &mdash; ' + fmtShort(parseDate(nm.start)) + (nm.start!==nm.end ? ' to ' + fmtShort(parseDate(nm.end)) : '')
+      : 'Nothing on the calendar right now.';
+  }
+
+  // ---------------- WORKOUTS ----------------
+  window.selectPhase = function(p){
+    state.workoutPhase = p;
+    if (!state.workoutDay) state.workoutDay = 'mon';
+    renderPhaseTabs();
+    renderDayTabs();
+    renderWorkout();
+  };
+  window.selectDay = function(d){
+    state.workoutDay = d;
+    renderDayTabs();
+    renderWorkout();
+  };
+
+  function renderPhaseTabs(){
+    var html = '';
+    [1,2,3].forEach(function(p){
+      html += '<button class="'+(state.workoutPhase===p?'active':'')+'" onclick="selectPhase('+p+')">Phase '+p+'</button>';
+    });
+    document.getElementById('phase-tabs').innerHTML = html;
+  }
+  function renderDayTabs(){
+    var html = '';
+    ['mon','wed','fri'].forEach(function(d){
+      html += '<button class="'+(state.workoutDay===d?'active':'')+'" onclick="selectDay(\''+d+'\')">'+DAY_NAMES[d]+'</button>';
+    });
+    document.getElementById('day-tabs').innerHTML = html;
+  }
+
+  function renderSetsExercise(ex, idx){
+    var h = '<div class="ex-card" data-exercise="'+ex.name.replace(/"/g,'&quot;')+'">';
+    h += '<div class="ex-top"><span class="ex-name">'+ex.name+'</span><span class="ex-sr">'+ex.sets.length+' &times; '+ex.sets[0]+'</span><button class="flag-ex-btn" onclick="toggleExerciseFlag(this, \''+ex.name.replace(/'/g,"\\'")+'\')" title="Flag to discuss at practice">&#9873;</button></div>';
+    h += '<div class="ex-cue">Rest '+ex.rest+' &middot; '+ex.cue+'</div>';
+    h += '<div class="ex-last"><label class="field-label">Last Workout</label><input class="field last-workout-display" readonly placeholder="First time doing this one" style="background:#F5F5F5;"></div>';
+    ex.sets.forEach(function(target, i){
+      h += '<div class="set-row" data-set="'+(i+1)+'"><span class="set-label">Set '+(i+1)+'</span>';
+      h += '<input class="field log-weight" placeholder="weight">';
+      h += '<input class="field log-reps" placeholder="target '+target+'">';
+      h += '<input type="checkbox" class="log-done">';
+      h += '</div>';
+    });
+    h += '</div>';
+    return h;
+  }
+  function renderSupersetExercise(ex){
+    var h = '<div class="contrast-card" data-exercise="'+ex.name.replace(/"/g,'&quot;')+'">';
+    h += '<div style="display:flex; justify-content:space-between; align-items:center;"><div class="ex-name">'+ex.name+'</div><button class="flag-ex-btn" onclick="toggleExerciseFlag(this, \''+ex.name.replace(/'/g,"\\'")+'\')" title="Flag to discuss at practice">&#9873;</button></div>';
+    h += '<div class="ex-cue" style="margin-top:6px;">'+ex.rounds+' rounds &middot; rest '+ex.rest+' between rounds &middot; '+ex.cue+'</div>';
+    h += '<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;"><input class="field log-weight" data-slot="a" placeholder="1st exercise, target 8-10"><input class="field log-weight" data-slot="b" placeholder="2nd exercise, target 8-10"></div>';
+    for (var r=1;r<=ex.rounds;r++){
+      h += '<div class="round-row" data-set="'+r+'"><input type="checkbox" class="log-done"><span class="small">Round '+r+' complete</span></div>';
+    }
+    h += '</div>';
+    return h;
+  }
+  function renderContrastExercise(ex){
+    var h = '<div class="contrast-card" data-exercise="'+ex.name.replace(/"/g,'&quot;')+'">';
+    h += '<div style="display:flex; justify-content:space-between; align-items:center;"><div class="ex-name">'+ex.name+'</div><button class="flag-ex-btn" onclick="toggleExerciseFlag(this, \''+ex.name.replace(/'/g,"\\'")+'\')" title="Flag to discuss at practice">&#9873;</button></div>';
+    h += '<div class="ex-cue" style="margin-top:6px;">'+ex.rounds+' rounds: lift &times;'+ex.liftReps+' &rarr; rest '+ex.restBetween+' &rarr; jump &times;'+ex.jumpReps+' &rarr; rest '+ex.restRounds+' before repeating.<br>'+ex.cue+'</div>';
+    h += '<div style="margin-top:8px;"><label class="field-label">Lift Weight</label><input class="field log-weight" placeholder="lb, target '+ex.liftReps+' reps"></div>';
+    for (var r=1;r<=ex.rounds;r++){
+      h += '<div class="round-row" data-set="'+r+'"><input type="checkbox" class="log-done"><span class="small">Round '+r+' complete</span></div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  function renderPullupExercise(ex){
+    var h = '<div class="ex-card" data-exercise="'+ex.name.replace(/"/g,'&quot;')+'">';
+    h += '<div class="ex-top"><span class="ex-name">'+ex.name+'</span><span class="ex-sr">'+ex.sets+' sets</span><button class="flag-ex-btn" onclick="toggleExerciseFlag(this, \''+ex.name.replace(/'/g,"\\'")+'\')" title="Flag to discuss at practice">&#9873;</button></div>';
+    h += '<div class="ex-cue">Rest '+ex.rest+' &middot; '+ex.cue+'</div>';
+    h += '<div class="ex-last"><label class="field-label">Last Time (reps @ assistance)</label><input class="field last-workout-display" readonly placeholder="First time doing this one" style="background:#F5F5F5;"></div>';
+    for (var i=1;i<=ex.sets;i++){
+      h += '<div class="set-row" data-set="'+i+'" style="grid-template-columns:70px 1fr 1fr 1fr 34px;">';
+      h += '<span class="set-label">Set '+i+'</span>';
+      h += '<input class="field log-reps" placeholder="reps">';
+      h += '<input class="field log-assist" placeholder="assistance">';
+      h += '<span class="small" style="align-self:center;">reps @ assist</span>';
+      h += '<input type="checkbox" class="log-done">';
+      h += '</div>';
+    }
+    h += '</div>';
+    return h;
+  }
+
+  // ---------------- AUTOSAVE ----------------
+  var AUTOSAVE_DEBOUNCE_MS = 2000;
+  var autosaveTimer = null;
+
+  function autosaveStorageKey(){
+    return 'autosave_' + (auth.athleteId || 'anon');
+  }
+  function getAutosaveRecord(){
+    try { var raw = localStorage.getItem(autosaveStorageKey()); return raw ? JSON.parse(raw) : null; } catch(e){ return null; }
+  }
+  function setAutosaveRecord(rec){
+    try { localStorage.setItem(autosaveStorageKey(), JSON.stringify(rec)); } catch(e){}
+  }
+  function clearAutosaveRecord(){
+    try { localStorage.removeItem(autosaveStorageKey()); } catch(e){}
+  }
+  function todayIso(){
+    var d = todayMid();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+
+  async function ensureInProgressWorkout(){
+    if (!auth.athleteId) return null;
+    var iso = todayIso();
+    var rec = getAutosaveRecord();
+    if (rec && rec.date===iso && rec.phase===state.workoutPhase && rec.day===state.workoutDay && rec.workoutId){
+      return rec.workoutId;
+    }
+    // Recover an existing DB row for today if one exists, instead of blindly creating a new one.
+    // This is what prevents duplicate/oversized entries if localStorage gets out of sync.
+    var existingRes = await sb.from('workouts').select('id,completed')
+      .eq('athlete_id', auth.athleteId).eq('workout_date', iso)
+      .eq('phase', state.workoutPhase).eq('workout_type', state.workoutDay).limit(1);
+    if (!existingRes.error && existingRes.data && existingRes.data.length){
+      var existing = existingRes.data[0];
+      if (existing.completed) return null; // already finished today — don't reopen or duplicate it
+      setAutosaveRecord({workoutId: existing.id, date: iso, phase: state.workoutPhase, day: state.workoutDay});
+      return existing.id;
+    }
+    var dayObj = CONFIG.program[state.workoutPhase] && CONFIG.program[state.workoutPhase][state.workoutDay];
+    var wRes = await sb.from('workouts').insert({
+      athlete_id: auth.athleteId,
+      workout_type: state.workoutDay,
+      workout_label: dayObj ? dayObj.label : '',
+      phase: state.workoutPhase,
+      workout_date: iso,
+      completed: false,
+      readiness: null
+    }).select().single();
+    if (wRes.error || !wRes.data) return null;
+    setAutosaveRecord({workoutId: wRes.data.id, date: iso, phase: state.workoutPhase, day: state.workoutDay});
+    return wRes.data.id;
+  }
+
+  var autosaveInFlight = false;
+  var autosavePending = false;
+
+  async function autosaveNow(){
+    if (previewActive()) return;
+    if (!auth.athleteId) return;
+    if (autosaveInFlight){ autosavePending = true; return; }
+    autosaveInFlight = true;
+    try {
+      var sets = collectLoggedSets();
+      if (!sets.length && !flaggedExercises.length) return;
+      var workoutId = await ensureInProgressWorkout();
+      if (!workoutId) return;
+      await sb.from('workout_sets').delete().eq('workout_id', workoutId);
+      var payload = sets.map(function(s){ return Object.assign({workout_id: workoutId}, s); });
+      if (payload.length) await sb.from('workout_sets').insert(payload);
+      var counts = computeExerciseCounts();
+      await sb.from('workouts').update({ flagged_exercises: flaggedExercises.length ? flaggedExercises.join(', ') : null, exercises_planned: counts.planned, exercises_completed: counts.completed }).eq('id', workoutId);
+      var indicator = document.getElementById('autosave-indicator');
+      if (indicator){
+        indicator.textContent = 'Saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+        indicator.style.opacity = '0.85';
+        setTimeout(function(){ if (indicator) indicator.style.opacity = '0.5'; }, 2500);
+      }
+    } finally {
+      autosaveInFlight = false;
+      if (autosavePending){
+        autosavePending = false;
+        autosaveNow();
+      }
+    }
+  }
+
+  function scheduleAutosave(){
+    if (autosaveTimer) clearTimeout(autosaveTimer);
+    autosaveTimer = setTimeout(autosaveNow, AUTOSAVE_DEBOUNCE_MS);
+  }
+
+  function attachAutosaveListeners(){
+    var container = document.getElementById('workout-content');
+    if (!container) return;
+    container.querySelectorAll('.log-weight, .log-reps, .log-assist').forEach(function(el){
+      el.addEventListener('input', scheduleAutosave);
+    });
+    container.querySelectorAll('.log-done').forEach(function(el){
+      el.addEventListener('change', scheduleAutosave);
+    });
+  }
+
+  async function restoreAutosavedInputs(){
+    flaggedExercises = [];
+    if (!auth.athleteId) return;
+    var rec = getAutosaveRecord();
+    var iso = todayIso();
+    if (!rec || rec.date!==iso || rec.phase!==state.workoutPhase || rec.day!==state.workoutDay || !rec.workoutId) return;
+    var res = await sb.from('workout_sets').select('exercise,set_number,reps,weight,assistance').eq('workout_id', rec.workoutId);
+    if (!res.error && res.data && res.data.length){
+      res.data.forEach(function(row){
+        var exEl = document.querySelector('#workout-content [data-exercise="'+String(row.exercise).replace(/"/g,'\\"')+'"]');
+        if (!exEl) return;
+        var setEl = exEl.querySelector('[data-set="'+row.set_number+'"]');
+        if (!setEl) return;
+        var weightEl = setEl.querySelector('.log-weight');
+        var repsEl = setEl.querySelector('.log-reps');
+        var assistEl = setEl.querySelector('.log-assist');
+        if (weightEl && row.weight!=null) weightEl.value = row.weight;
+        if (repsEl && row.reps!=null) repsEl.value = row.reps;
+        if (assistEl && row.assistance!=null) assistEl.value = row.assistance;
+      });
+    }
+    var wRes = await sb.from('workouts').select('flagged_exercises').eq('id', rec.workoutId).single();
+    if (!wRes.error && wRes.data && wRes.data.flagged_exercises){
+      flaggedExercises = wRes.data.flagged_exercises.split(', ');
+      flaggedExercises.forEach(function(exName){
+        var exEl = document.querySelector('#workout-content [data-exercise="'+exName.replace(/"/g,'\\"')+'"]');
+        if (!exEl) return;
+        var btn = exEl.querySelector('.flag-ex-btn');
+        if (btn) btn.classList.add('flagged');
+      });
+    }
+    var indicator = document.getElementById('autosave-indicator');
+    if (indicator) indicator.textContent = 'Restored your progress from earlier.';
+  }
+
+  // ---------------- LAST TIME AUTO-FILL ----------------
+  async function renderLastTimeData(){
+    var scopedId = await resolveSiteAthleteId();
+    if (!scopedId) return;
+    var iso = todayIso();
+    var res = await sb.from('workouts').select('id,workout_date')
+      .eq('athlete_id', scopedId).eq('workout_type', state.workoutDay)
+      .eq('completed', true).lt('workout_date', iso)
+      .order('workout_date', {ascending:false}).limit(4);
+    if (res.error || !res.data || !res.data.length) return;
+    var pickRow = null;
+    res.data.forEach(function(r){ if (!pickRow && !isPlanDateIso(r.workout_date)) pickRow = r; });
+    if (!pickRow) return;
+    var priorWorkoutId = pickRow.id;
+    var setsRes = await sb.from('workout_sets').select('exercise,set_number,reps,weight,assistance')
+      .eq('workout_id', priorWorkoutId).order('set_number');
+    if (setsRes.error || !setsRes.data) return;
+    var byExercise = {};
+    setsRes.data.forEach(function(s){
+      if (!byExercise[s.exercise]) byExercise[s.exercise] = [];
+      byExercise[s.exercise].push(s);
+    });
+    document.querySelectorAll('#workout-content [data-exercise]').forEach(function(exEl){
+      var name = exEl.getAttribute('data-exercise');
+      var display = exEl.querySelector('.last-workout-display');
+      if (!display) return;
+      var priorSets = byExercise[name];
+      if (!priorSets || !priorSets.length) return;
+      var str = priorSets.map(function(s){
+        if (s.assistance != null && s.assistance !== ''){
+          return (s.reps||'-') + ' @ ' + s.assistance;
+        }
+        var parts = [];
+        if (s.weight) parts.push(s.weight);
+        if (s.reps) parts.push('x ' + s.reps);
+        return parts.length ? parts.join(' ') : '-';
+      }).join(', ');
+      display.value = str;
+    });
+  }
+
+  function renderWorkout(){
+    var day = CONFIG.program[state.workoutPhase] && CONFIG.program[state.workoutPhase][state.workoutDay];
+    if (!day){ document.getElementById('workout-content').innerHTML = '<div class="card"><p class="small">No workout found.</p></div>'; return; }
+
+    var today = todayMid();
+    var meet = getMeet(today);
+    var taper = getTaper(today);
+    var isToday = (function(){
+      var block = getPhaseBlock(today);
+      var wd = today.getDay();
+      return block && block.phase===state.workoutPhase && DAY_KEYS[wd]===state.workoutDay;
+    })();
+    var todayOverride = isToday ? getLiftOverride(today) : null;
+    var planOv = (todayOverride && todayOverride.mode==='modified' && todayOverride.plan) ? todayOverride : null;
+
+    var html = '<div class="card accent-red">';
+    html += '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">';
+    html += '<h3>Phase '+state.workoutPhase+' &middot; '+DAY_NAMES[state.workoutDay]+' &mdash; '+day.label+'</h3>';
+    if (todayOverride && todayOverride.mode==='no-lift') html += '<span class="tag charcoal">No Lift Today</span>';
+    else if (todayOverride && todayOverride.mode==='modified') html += '<span class="tag amber">'+(planOv ? (planOv.plan.chip || 'Meet-Week Lift') : 'Modified Workout')+'</span>';
+    else if (isToday && meet) html += '<span class="tag amber">Meet Week: '+meet.label+' &mdash; lighten the load</span>';
+    else if (isToday && taper) html += '<span class="tag blue">Taper Week &mdash; keep it light</span>';
+    html += '</div>';
+    if (isToday && !todayOverride) html += '<p class="small" style="margin-top:4px;">This is today\'s workout.</p>';
+    html += '<p class="small" style="margin-top:8px; color:var(--slate-light);">Rest between sets on purpose \u2014 a rushed set doesn\'t build strength the way a fully recovered one does.</p>';
+    html += '</div>';
+
+    if (day.note){
+      html += '<div class="note-box grey"><strong>Why this phase:</strong> '+day.note+'</div>';
+    }
+
+    html += '<p class="small" id="autosave-indicator" style="text-align:right; color:var(--slate-light); opacity:0.6; margin:6px 4px 0 0;">&nbsp;</p>';
+
+    if (todayOverride && todayOverride.mode==='no-lift'){
+      html += '<div class="card accent-charcoal"><h3>No Lift Today</h3><p class="small" style="margin-top:6px;">'+todayOverride.label+'. No gym today &mdash; rest, or focus on swim/dryland instead.</p></div>';
+    } else if (planOv){
+      html += renderTaperIntro(planOv);
+      buildPlanExercises(day, planOv).forEach(function(ex, idx){ html += renderTaperExercise(ex, idx); });
+    } else if (todayOverride && todayOverride.mode==='modified'){
+      html += '<div class="card accent-red"><h3>Modified Workout</h3><p class="small" style="margin-top:6px;">'+todayOverride.label+'. The normal Phase '+state.workoutPhase+' workout is on hold this week &mdash; check with your coach for what to do today.</p></div>';
+    } else {
+      day.exercises.forEach(function(ex, idx){
+        if (ex.type==='sets') html += renderSetsExercise(ex, idx);
+        else if (ex.type==='superset') html += renderSupersetExercise(ex);
+        else if (ex.type==='contrast') html += renderContrastExercise(ex);
+        else if (ex.type==='pullup') html += renderPullupExercise(ex);
+      });
+    }
+
+    if (!todayOverride || todayOverride.mode!=='no-lift'){
+      html += '<div class="reassurance-note">Ran out of time? Do what you can with good form and hit complete anyway &mdash; showing up matters more than finishing everything.</div>';
+      html += '<button class="complete-btn" id="complete-btn" onclick="toggleComplete()">Mark Workout Complete</button>';
+      html += '<div id="feel-checkin" style="display:none; margin-top:12px;">';
+      html += '<div class="card"><h3 style="text-align:center;">How Did That Workout Feel?</h3>';
+      html += '<div style="display:flex; gap:8px; margin-top:10px;">';
+      html += '<button class="feel-btn" data-feel="good" onclick="recordFeel(\'good\')">\uD83D\uDFE2 GOOD<span>Feel good, ready for practice</span></button>';
+      html += '<button class="feel-btn" data-feel="tough" onclick="recordFeel(\'tough\')">\uD83D\uDFE1 TOUGH<span>Tired but okay</span></button>';
+      html += '<button class="feel-btn" data-feel="too-much" onclick="recordFeel(\'too-much\')">\uD83D\uDD34 TOO MUCH<span>Unusually fatigued/sore</span></button>';
+      html += '</div><p class="small" id="feel-status" style="margin-top:8px; text-align:center;"></p></div></div>';
+    }
+    document.getElementById('workout-content').innerHTML = html;
+    attachAutosaveListeners();
+    restoreAutosavedInputs();
+    renderLastTimeData();
+    if (planOv) loadTaperTargets();
+  }
+
+  window.toggleComplete = function(){
+    var btn = document.getElementById('complete-btn');
+    var checkin = document.getElementById('feel-checkin');
+    if (btn.classList.contains('done')){
+      btn.classList.remove('done'); btn.textContent='Mark Workout Complete';
+      if (checkin) checkin.style.display='none';
+    } else {
+      btn.classList.add('done'); btn.textContent='\u2713 Workout Complete';
+      if (checkin) checkin.style.display='block';
+    }
+  };
+
+  function computeExerciseCounts(){
+    var dayObj = CONFIG.program[state.workoutPhase] && CONFIG.program[state.workoutPhase][state.workoutDay];
+    var exercises = (dayObj && dayObj.exercises) || [];
+    var planO = activePlanOverride();
+    if (planO) exercises = buildPlanExercises(dayObj, planO);
+    var planned = 0, completed = 0;
+    exercises.forEach(function(ex){
+      var cue = (ex.cue || '').toLowerCase();
+      if (cue.indexOf('optional') > -1) return;
+      planned++;
+      var exEl = document.querySelector('#workout-content [data-exercise="'+ex.name.replace(/"/g,'\\"')+'"]');
+      if (!exEl) return;
+      var hasActivity = false;
+      exEl.querySelectorAll('.log-done').forEach(function(cb){ if (cb.checked) hasActivity = true; });
+      exEl.querySelectorAll('.log-weight, .log-reps, .log-assist').forEach(function(inp){ if (inp.value) hasActivity = true; });
+      if (hasActivity) completed++;
+    });
+    return { planned: planned, completed: completed };
+  }
+
+  function collectLoggedSets(){
+    var rows = [];
+    document.querySelectorAll('#workout-content [data-exercise]').forEach(function(exEl){
+      var exName = exEl.getAttribute('data-exercise');
+      exEl.querySelectorAll('[data-set]').forEach(function(setEl){
+        var setNum = parseInt(setEl.getAttribute('data-set'));
+        var weightEl = setEl.querySelector('.log-weight');
+        var repsEl = setEl.querySelector('.log-reps');
+        var assistEl = setEl.querySelector('.log-assist');
+        var doneEl = setEl.querySelector('.log-done');
+        var weight = weightEl ? weightEl.value : null;
+        var reps = repsEl ? repsEl.value : null;
+        var assistance = assistEl ? assistEl.value : null;
+        var done = doneEl ? doneEl.checked : false;
+        if (weight || reps || assistance || done){
+          rows.push({ exercise: exName, set_number: setNum, reps: reps || null, weight: weight || null, assistance: assistance || null });
+        }
+      });
+      // Superset/contrast top-level weight fields live outside any [data-set] row —
+      // capture those separately so nothing typed there gets silently dropped.
+      exEl.querySelectorAll('.log-weight').forEach(function(input){
+        if (input.closest('[data-set]')) return;
+        var val = input.value;
+        if (!val) return;
+        var slot = input.getAttribute('data-slot');
+        var label = slot ? (exName + ' (' + (slot==='a' ? '1st' : '2nd') + ')') : exName;
+        rows.push({ exercise: label, set_number: 1, reps: null, weight: val, assistance: null });
+      });
+    });
+    return rows;
+  }
+
+  async function saveWorkoutToSupabase(feel){
+    if (previewActive()) return;
+    var status = document.getElementById('feel-status');
+    if (!auth.athleteId){
+      if (status) status.textContent += ' (Signed in as coach — not saved as a logged workout.)';
+      return;
+    }
+    if (autosaveTimer){ clearTimeout(autosaveTimer); autosaveTimer = null; }
+    while (autosaveInFlight){ await new Promise(function(r){ setTimeout(r, 150); }); }
+    autosaveInFlight = true;
+    try {
+      var workoutId = await ensureInProgressWorkout();
+      if (!workoutId){ if (status) status.textContent = 'Could not save to History.'; return; }
+
+      var sets = collectLoggedSets();
+      await sb.from('workout_sets').delete().eq('workout_id', workoutId);
+      if (sets.length){
+        var setsPayload = sets.map(function(s){ return Object.assign({workout_id: workoutId}, s); });
+        var sRes = await sb.from('workout_sets').insert(setsPayload);
+        if (sRes.error){ if (status) status.textContent = 'Workout saved, but sets failed to save: ' + sRes.error.message; return; }
+      }
+
+      var counts = computeExerciseCounts();
+      var uRes = await sb.from('workouts').update({ completed: true, readiness: { feel: feel }, flagged_exercises: flaggedExercises.length ? flaggedExercises.join(', ') : null, exercises_planned: counts.planned, exercises_completed: counts.completed }).eq('id', workoutId);
+      if (uRes.error){ if (status) status.textContent = 'Could not finalize save: ' + uRes.error.message; return; }
+
+      clearAutosaveRecord();
+      flaggedExercises = [];
+      if (status) status.textContent = (status.textContent||'') + ' Saved to History.';
+    } finally {
+      autosaveInFlight = false;
+    }
+  }
+
+  window.recordFeel = function(feel){
+    document.querySelectorAll('.feel-btn').forEach(function(b){ b.classList.remove('selected'); });
+    var btn = document.querySelector('.feel-btn[data-feel="'+feel+'"]');
+    if (btn) btn.classList.add('selected');
+    var today = todayMid();
+    workoutLog.unshift({date: fmtShort(today), phase: state.workoutPhase, day: DAY_NAMES[state.workoutDay], feel: feel});
+    var labelMap = {good:'Logged: Good \uD83D\uDFE2', tough:'Logged: Tough \uD83D\uDFE1', 'too-much':'Logged: Too Much \uD83D\uDD34 — worth mentioning to your coach.'};
+    var status = document.getElementById('feel-status');
+    if (status) status.textContent = labelMap[feel];
+    saveWorkoutToSupabase(feel);
+  };
+
+
+  // ---------------- CALENDAR ----------------
+  var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  function calMin(){ return new Date(2026,8,1); }
+  function calMax(){ return new Date(2027,2,1); }
+
+  function initCalCursor(){
+    var t = todayMid();
+    if (t < calMin()) state.calCursor = new Date(calMin());
+    else if (t > calMax()) state.calCursor = new Date(calMax());
+    else state.calCursor = new Date(t.getFullYear(), t.getMonth(), 1);
+  }
+
+  function renderCalendar(){
+    if (!state.calCursor) initCalCursor();
+    var row = document.getElementById('cal-dow-row');
+    if (!row.innerHTML) row.innerHTML = DOW.map(function(d){ return '<div class="cal-dow">'+d+'</div>'; }).join('');
+
+    var year = state.calCursor.getFullYear(), month = state.calCursor.getMonth();
+    document.getElementById('cal-label').textContent = state.calCursor.toLocaleDateString('en-US',{month:'long', year:'numeric'});
+    document.getElementById('cal-prev').disabled = (year===calMin().getFullYear() && month===calMin().getMonth());
+    document.getElementById('cal-next').disabled = (year===calMax().getFullYear() && month===calMax().getMonth());
+
+    var firstDow = new Date(year, month, 1).getDay();
+    var daysInMonth = new Date(year, month+1, 0).getDate();
+    var today = todayMid();
+
+    var html = '';
+    for (var i=0;i<firstDow;i++) html += '<div class="cal-cell blank"></div>';
+    for (var day=1; day<=daysInMonth; day++){
+      var d = new Date(year, month, day);
+      var iso = year+'-'+String(month+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+      var cls = 'cal-cell' + (sameDay(d,today) ? ' is-today' : '');
+      html += '<div class="'+cls+'" onclick="calSelectDate(\''+iso+'\')"><div class="cal-daynum">'+day+'</div>';
+      var pb = getPhaseBlock(d);
+      if (pb && d.getTime()===parseDate(pb.start).getTime()) html += '<span class="cal-pill phase">P'+pb.phase+' Starts</span>';
+      var meet = getMeet(d);
+      if (meet) html += '<span class="cal-pill meet">'+meet.label+'</span>';
+      else { var tp = getTaper(d); if (tp) html += '<span class="cal-pill taper">Taper</span>'; }
+      if (isLiftDate(d)){
+        var ov = getLiftOverride(d);
+        if (ov && ov.mode==='no-lift') html += '<span class="cal-pill nolift">No Lift</span>';
+        else if (ov && ov.mode==='modified') html += '<span class="cal-pill modified">Modified</span>';
+        else html += '<span class="cal-pill lift">Lift</span>';
+      }
+      html += '</div>';
+    }
+    document.getElementById('cal-grid').innerHTML = html;
+  }
+
+  window.calShift = function(dir){
+    var nm = new Date(state.calCursor.getFullYear(), state.calCursor.getMonth()+dir, 1);
+    if (nm < calMin() || nm > calMax()) return;
+    state.calCursor = nm;
+    renderCalendar();
+  };
+
+  window.calSelectDate = function(iso){
+    document.querySelectorAll('.cal-cell').forEach(function(c){ c.classList.remove('is-selected'); });
+    event.currentTarget.classList.add('is-selected');
+    var d = parseDate(iso);
+    var pb = getPhaseBlock(d);
+    var meet = getMeet(d);
+    var taper = getTaper(d);
+    var lift = isLiftDate(d);
+    var override = lift ? getLiftOverride(d) : null;
+    var html = '<h3>'+fmtLong(d)+'</h3>';
+    html += '<p class="small" style="margin-top:6px;"><strong>Phase:</strong> '+(pb ? pb.label : 'Not in season') + '</p>';
+    var liftText;
+    if (!lift) liftText = 'No — not a lift day';
+    else if (override && override.mode==='no-lift') liftText = (/^No Lift/i.test(override.label) ? override.label : 'No Lift — ' + override.label);
+    else if (override && override.mode==='modified') liftText = (override.plan ? override.label : 'Modified Workout — ' + override.label);
+    else liftText = 'Yes — ' + (pb ? 'Phase '+pb.phase : '');
+    html += '<p class="small"><strong>Lifting:</strong> '+liftText+'</p>';
+    if (override && override.plan){
+      var pl = override.plan;
+      html += '<p class="small"><strong>Plan:</strong> ' + pl.exercises.map(function(e){ return e.name + ' (' + e.sets + ' sets)'; }).join(', ') + '.' + ((pl.dropped && pl.dropped.length) ? ' Skipping: ' + pl.dropped.join(', ') + '.' : '') + ' Your weight targets show up on the day.</p>';
+    }
+    if (meet) html += '<p class="small"><strong>Meet:</strong> '+meet.label+'</p>';
+    if (taper) html += '<p class="small"><strong>Taper:</strong> '+taper.label.replace(/^Taper:\s*/,'')+(override && override.plan ? ' &mdash; see the lift plan above' : ' &mdash; keep lifting light')+'</p>';
+    if (!meet && !taper && !override) html += '<p class="small">Normal training day.</p>';
+    document.getElementById('cal-detail').innerHTML = html;
+  };
+
+  // ---------------- PROGRESS ----------------
+  var progLifts = ['Smith Machine Squat','Hip Thrust','Lat Pulldown','Seated Cable Row','Assisted Pull-Ups','Leg Press'];
+  // ---------------- PROGRESS DATA ----------------
+  var progressStartsCache = null;
+  var progressCurrentCache = null;
+  var progressTargetCache = null;
+
+  function findPullupExerciseName(){
+    for (var phase in CONFIG.program){
+      var days = CONFIG.program[phase];
+      for (var dayKey in days){
+        var exercises = (days[dayKey] && days[dayKey].exercises) || [];
+        for (var i=0;i<exercises.length;i++){
+          if (exercises[i].type === 'pullup') return exercises[i].name;
+        }
+      }
+    }
+    return null;
+  }
+
+  async function loadProgressData(){
+    progressStartsCache = { weight:{}, reps:{}, assistMin:{} };
+    progressCurrentCache = { weight:{}, reps:{}, assistMin:{} };
+    progressTargetCache = {};
+    var scopedId = await resolveSiteAthleteId();
+    if (!scopedId) return;
+
+    var targetsRes = await sb.from('progress_starts').select('lift_key,start_value').eq('athlete_id', scopedId);
+    if (!targetsRes.error && targetsRes.data){
+      targetsRes.data.forEach(function(r){ progressTargetCache[r.lift_key] = r.start_value; });
+    }
+
+    var wRes = await sb.from('workouts').select('id,workout_date').eq('athlete_id', scopedId).eq('completed', true).order('workout_date', {ascending:true});
+    if (wRes.error || !wRes.data || !wRes.data.length) return;
+    var workoutIds = wRes.data.map(function(w){ return w.id; });
+    var setsRes = await sb.from('workout_sets').select('workout_id,exercise,weight,reps,assistance').in('workout_id', workoutIds);
+    if (setsRes.error || !setsRes.data) return;
+
+    var setsByWorkout = {};
+    setsRes.data.forEach(function(s){
+      if (!setsByWorkout[s.workout_id]) setsByWorkout[s.workout_id] = [];
+      setsByWorkout[s.workout_id].push(s);
+    });
+
+    var sessionCount = { weight:{}, reps:{}, assistMin:{} };
+    wRes.data.forEach(function(w){
+      var sets = setsByWorkout[w.id] || [];
+      var countedThisWorkout = { weight:{}, reps:{}, assistMin:{} };
+      sets.forEach(function(s){
+        var wt = parseFloat(s.weight), r = parseFloat(s.reps), a = parseFloat(s.assistance);
+        if (!isNaN(wt)){
+          if (!countedThisWorkout.weight[s.exercise]){
+            sessionCount.weight[s.exercise] = (sessionCount.weight[s.exercise]||0) + 1;
+            countedThisWorkout.weight[s.exercise] = true;
+          }
+          if (sessionCount.weight[s.exercise] === 2 && progressStartsCache.weight[s.exercise] == null) progressStartsCache.weight[s.exercise] = wt;
+          if (progressCurrentCache.weight[s.exercise] == null || wt > progressCurrentCache.weight[s.exercise]) progressCurrentCache.weight[s.exercise] = wt;
+        }
+        if (!isNaN(r)){
+          if (!countedThisWorkout.reps[s.exercise]){
+            sessionCount.reps[s.exercise] = (sessionCount.reps[s.exercise]||0) + 1;
+            countedThisWorkout.reps[s.exercise] = true;
+          }
+          if (sessionCount.reps[s.exercise] === 2 && progressStartsCache.reps[s.exercise] == null) progressStartsCache.reps[s.exercise] = r;
+          if (progressCurrentCache.reps[s.exercise] == null || r > progressCurrentCache.reps[s.exercise]) progressCurrentCache.reps[s.exercise] = r;
+        }
+        if (!isNaN(a)){
+          if (!countedThisWorkout.assistMin[s.exercise]){
+            sessionCount.assistMin[s.exercise] = (sessionCount.assistMin[s.exercise]||0) + 1;
+            countedThisWorkout.assistMin[s.exercise] = true;
+          }
+          if (sessionCount.assistMin[s.exercise] === 2 && progressStartsCache.assistMin[s.exercise] == null) progressStartsCache.assistMin[s.exercise] = a;
+          if (progressCurrentCache.assistMin[s.exercise] == null || a < progressCurrentCache.assistMin[s.exercise]) progressCurrentCache.assistMin[s.exercise] = a;
+        }
+      });
+    });
+  }
+
+  window.saveProgressStart = async function(liftKey, value){
+    var scopedId = await resolveSiteAthleteId();
+    if (!scopedId) return;
+    var num = parseFloat(value);
+    if (isNaN(num)) return;
+    progressTargetCache[liftKey] = num;
+    await sb.from('progress_starts').upsert({ athlete_id: scopedId, lift_key: liftKey, start_value: num, updated_at: new Date().toISOString() }, { onConflict: 'athlete_id,lift_key' });
+  };
+
+  async function renderProgress(){
+    await loadProgressData();
+    var pullupName = findPullupExerciseName();
+    var html = '';
+    progLifts.forEach(function(name, i){
+      var startVal = progressStartsCache.weight[name];
+      var curVal = progressCurrentCache.weight[name];
+      html += '<div class="card accent-red">';
+      html += '<h3>'+name+'</h3>';
+      html += '<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">';
+      html += '<div><label class="field-label">Starting</label><input class="field prog-input" data-idx="'+i+'" data-role="start" readonly style="background:#F5F5F5;" placeholder="Locks in after 2nd time logged" value="'+(startVal!=null?startVal:'')+'"></div>';
+      html += '<div><label class="field-label">Current</label><input class="field prog-input" data-idx="'+i+'" data-role="current" readonly style="background:#F5F5F5;" placeholder="Not logged yet" value="'+(curVal!=null?curVal:'')+'"></div>';
+      html += '</div>';
+      html += '<div class="prog-bar-track"><div class="prog-bar-fill" id="prog-bar-'+i+'" style="width:0%;"></div></div>';
+      html += '<div class="prog-nums"><span>Start</span><span id="prog-delta-'+i+'"></span></div>';
+      html += '</div>';
+    });
+
+    var puStartReps = pullupName ? progressStartsCache.reps[pullupName] : null;
+    var puReps = pullupName ? progressCurrentCache.reps[pullupName] : null;
+    var puStartAssist = pullupName ? progressStartsCache.assistMin[pullupName] : null;
+    var puAssist = pullupName ? progressCurrentCache.assistMin[pullupName] : null;
+
+    html += '<div class="card accent-charcoal">';
+    html += '<h3>Pull-Up Reps</h3>';
+    html += '<p class="small">The real goal — actually performing a pull-up. Higher is better.</p>';
+    html += '<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">';
+    html += '<div><label class="field-label">Starting</label><input class="field prog-input" data-idx="pu-reps" data-role="start" readonly style="background:#F5F5F5;" placeholder="Locks in after 2nd time logged" value="'+(puStartReps!=null?puStartReps:'')+'"></div>';
+    html += '<div><label class="field-label">Current</label><input class="field prog-input" data-idx="pu-reps" data-role="current" readonly style="background:#F5F5F5;" placeholder="Not logged yet" value="'+(puReps!=null?puReps:'')+'"></div>';
+    html += '</div><div class="prog-bar-track"><div class="prog-bar-fill" id="prog-bar-pu-reps" style="width:0%;"></div></div>';
+    html += '<div class="prog-nums"><span>Start</span><span id="prog-delta-pu-reps"></span></div></div>';
+
+    html += '<div class="card accent-charcoal">';
+    html += '<h3>Pull-Up Assistance</h3>';
+    html += '<p class="small">Lower is better here — bar fills as assistance goes down.</p>';
+    html += '<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">';
+    html += '<div><label class="field-label">Starting</label><input class="field prog-input" data-idx="pu-assist" data-role="start" data-invert="1" readonly style="background:#F5F5F5;" placeholder="Locks in after 2nd time logged" value="'+(puStartAssist!=null?puStartAssist:'')+'"></div>';
+    html += '<div><label class="field-label">Current</label><input class="field prog-input" data-idx="pu-assist" data-role="current" data-invert="1" readonly style="background:#F5F5F5;" placeholder="Not logged yet" value="'+(puAssist!=null?puAssist:'')+'"></div>';
+    html += '</div><div class="prog-bar-track"><div class="prog-bar-fill" id="prog-bar-pu-assist" style="width:0%;"></div></div>';
+    html += '<div class="prog-nums"><span>Start</span><span id="prog-delta-pu-assist"></span></div></div>';
+
+    if (workoutLog.length){
+      var labelMap = {good:'\uD83D\uDFE2 Good', tough:'\uD83D\uDFE1 Tough', 'too-much':'\uD83D\uDD34 Too Much'};
+      html += '<div class="card accent-charcoal" style="grid-column:1 / -1;"><h3>Recent Check-Ins</h3>';
+      workoutLog.slice(0,10).forEach(function(entry){
+        html += '<p class="small" style="margin-top:6px;">'+entry.date+' &middot; Phase '+entry.phase+' '+entry.day+' &mdash; '+(labelMap[entry.feel]||entry.feel)+'</p>';
+      });
+      html += '<p class="small" style="margin-top:8px; color:var(--slate-light);">This list is for this browsing session only &mdash; it clears on reload.</p></div>';
+    }
+    document.getElementById('progress-grid').innerHTML = html;
+    document.querySelectorAll('.prog-input[data-idx]').forEach(function(inp){
+      updateProgBar.call(inp);
+    });
+  }
+  function updateProgBar(){
+    var idx = this.getAttribute('data-idx');
+    var invert = this.getAttribute('data-invert')==='1';
+    var startEl = document.querySelector('.prog-input[data-idx="'+idx+'"][data-role="start"]');
+    var curEl = document.querySelector('.prog-input[data-idx="'+idx+'"][data-role="current"]');
+    var start = parseFloat(startEl.value), cur = parseFloat(curEl.value);
+    var bar = document.getElementById('prog-bar-'+idx);
+    var delta = document.getElementById('prog-delta-'+idx);
+    if (isNaN(start) || isNaN(cur) || start<=0){ bar.style.width='0%'; delta.textContent=''; return; }
+    var diff = cur-start;
+    var pct;
+    if (invert){
+      var target = start*0.5;
+      pct = Math.min(100, Math.max(0, ((start-cur)/(start-target))*100));
+    } else {
+      var target2 = start*1.25;
+      pct = Math.min(100, Math.max(0, ((cur-start)/(target2-start))*100));
+    }
+    bar.style.width = pct + '%';
+    delta.textContent = (diff>=0?'+':'') + diff.toFixed(1) + ' (' + (diff/start*100).toFixed(0) + '%)';
+  }
+
+  // ---------------- HISTORY (Supabase) ----------------
+  var siteAthleteId = null;
+  async function resolveSiteAthleteId(){
+    if (siteAthleteId) return siteAthleteId;
+    var res = await sb.from('athletes').select('id').eq('name', CONFIG.athleteName).single();
+    if (!res.error && res.data) siteAthleteId = res.data.id;
+    return siteAthleteId;
+  }
+
+  async function renderHistory(){
+    var statusEl = document.getElementById('history-status');
+    var listEl = document.getElementById('history-list');
+    statusEl.style.display = 'block';
+    statusEl.innerHTML = '<p class="small">Loading history\u2026</p>';
+    listEl.innerHTML = '';
+
+    var scopedId = await resolveSiteAthleteId();
+    if (!scopedId){ statusEl.innerHTML = '<p class="small">Could not find this athlete\'s record yet — check Supabase setup.</p>'; return; }
+
+    var query = sb.from('workouts').select('id,workout_type,workout_label,phase,workout_date,readiness,notes').eq('athlete_id', scopedId).eq('completed', true).order('workout_date', {ascending:false}).order('created_at', {ascending:false});
+    var res = await query;
+    if (res.error){ statusEl.innerHTML = '<p class="small">Could not load history: '+res.error.message+'</p>'; return; }
+    if (!res.data.length){ statusEl.innerHTML = '<p class="small">No workouts saved yet. Complete one and it will show up here.</p>'; return; }
+    statusEl.style.display = 'none';
+
+    var html = '';
+    res.data.forEach(function(w){
+      var feelMap = {good:'\uD83D\uDFE2 Good', tough:'\uD83D\uDFE1 Tough', 'too-much':'\uD83D\uDD34 Too Much'};
+      var feel = w.readiness && w.readiness.feel ? feelMap[w.readiness.feel] : '';
+      html += '<div class="card accent-red" style="margin-bottom:10px; cursor:pointer;" onclick="toggleHistoryDetail(\''+w.id+'\')">';
+      html += '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">';
+      html += '<h3>'+fmtShort(parseDate(w.workout_date))+' &mdash; '+(w.workout_label||w.workout_type)+'</h3>';
+      html += (w.phase ? '<span class="tag red">Phase '+w.phase+'</span>' : '') + '</div>';
+      html += '<p class="small" style="margin-top:4px;">'+feel+'</p>';
+      if (w.notes) html += '<p class="small" style="margin-top:6px; white-space:pre-wrap;">'+w.notes+'</p>';
+      html += '<div id="hist-detail-'+w.id+'" style="display:none; margin-top:10px;"><p class="small">Loading sets\u2026</p></div>';
+      html += '</div>';
+    });
+    listEl.innerHTML = html;
+  }
+
+  var historyDetailLoaded = {};
+  window.toggleHistoryDetail = async function(workoutId){
+    var el = document.getElementById('hist-detail-'+workoutId);
+    if (!el) return;
+    var isOpen = el.style.display === 'block';
+    el.style.display = isOpen ? 'none' : 'block';
+    if (isOpen || historyDetailLoaded[workoutId]) return;
+    historyDetailLoaded[workoutId] = true;
+    var res = await sb.from('workout_sets').select('exercise,set_number,reps,weight,assistance').eq('workout_id', workoutId).order('set_number', {ascending:true});
+    if (res.error){ el.innerHTML = '<p class="small">Could not load sets: '+res.error.message+'</p>'; return; }
+    if (!res.data.length){ el.innerHTML = '<p class="small">No individual sets were logged for this workout.</p>'; return; }
+    var byExercise = {};
+    res.data.forEach(function(s){
+      if (!byExercise[s.exercise]) byExercise[s.exercise] = [];
+      byExercise[s.exercise].push(s);
+    });
+    var html = '';
+    Object.keys(byExercise).forEach(function(exName){
+      html += '<p class="small" style="font-weight:800; color:var(--charcoal); margin-top:8px;">'+exName+'</p>';
+      byExercise[exName].forEach(function(s){
+        var line = 'Set '+s.set_number+': ' + (s.weight ? s.weight+' &times; ' : '') + (s.reps || '\u2014');
+        if (s.assistance) line += ' @ '+s.assistance+' assist';
+        html += '<p class="small" style="margin-left:8px;">'+line+'</p>';
+      });
+    });
+    el.innerHTML = html;
+  };
+
+  // ---------------- COACH MODE ----------------
+  window.openCoachPanel = function(){
+    document.getElementById('coach-json').value = JSON.stringify(CONFIG, null, 2);
+    document.getElementById('coach-panel').classList.add('open');
+    document.getElementById('coach-status').textContent = '';
+  };
+  window.closeCoachPanel = function(){ document.getElementById('coach-panel').classList.remove('open'); };
+  window.applyCoachEdits = function(){
+    try{
+      var parsed = JSON.parse(document.getElementById('coach-json').value);
+      CONFIG = parsed;
+      renderHome();
+      if (state.workoutPhase) renderWorkout();
+      renderCalendar();
+      document.getElementById('coach-status').textContent = 'Applied — live preview updated. Remember: this resets on reload unless saved into the file.';
+    }catch(e){
+      document.getElementById('coach-status').textContent = 'Could not parse that JSON: ' + e.message;
+    }
+  };
+  window.copyCoachJson = function(){
+    var ta = document.getElementById('coach-json');
+    ta.select();
+    document.execCommand('copy');
+    document.getElementById('coach-status').textContent = 'Copied to clipboard.';
+  };
+
+  // ---------------- INIT ----------------
+  async function backfillExerciseCounts(){
+    if (!auth.athleteId) return;
+    try {
+      var res = await sb.from('workouts').select('id,phase,workout_type').eq('athlete_id', auth.athleteId).eq('completed', true).is('exercises_planned', null);
+      if (res.error || !res.data || !res.data.length) return;
+      for (var i=0;i<res.data.length;i++){
+        var w = res.data[i];
+        var dayObj = CONFIG.program[w.phase] && CONFIG.program[w.phase][w.workout_type];
+        var exercises = (dayObj && dayObj.exercises) || [];
+        if (!exercises.length) continue;
+        var setsRes = await sb.from('workout_sets').select('exercise').eq('workout_id', w.id);
+        var loggedNames = {};
+        (setsRes.data||[]).forEach(function(s){ loggedNames[s.exercise] = true; });
+        var planned = 0, completed = 0;
+        exercises.forEach(function(ex){
+          var cue = (ex.cue||'').toLowerCase();
+          if (cue.indexOf('optional') > -1) return;
+          planned++;
+          if (loggedNames[ex.name] || loggedNames[ex.name+' (1st)'] || loggedNames[ex.name+' (2nd)']) completed++;
+        });
+        await sb.from('workouts').update({ exercises_planned: planned, exercises_completed: completed }).eq('id', w.id);
+      }
+    } catch(e){}
+  }
+
+  function initDashboard(){
+    if (previewActive()) showPreviewBanner();
+    renderHome();
+    backfillExerciseCounts();
+    var todayBlock = getPhaseBlock(todayMid());
+    selectPhase(todayBlock ? todayBlock.phase : 1);
+    var wd = todayMid().getDay();
+    selectDay(DAY_KEYS[wd] || 'mon');
+  }
+
+  (async function checkExistingSession(){
+    var sessionRes = await sb.auth.getSession();
+    if (sessionRes.data.session){
+      await loadProfileAndStart();
+    }
+  })();
+})();
+</script>
+</body>
+</html>
