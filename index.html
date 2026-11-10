@@ -295,7 +295,7 @@
     </div>
     <div class="card accent-charcoal" style="margin-top:14px;">
       <h3>Why The Program Changes</h3>
-      <p class="small" style="margin-top:6px;">Phase 1 builds a base and teaches you the lifts. Phase 2 is where your strength numbers should move. Phase 3 holds that strength with less volume so you feel fresh for sectionals, districts and state &mdash; it should feel shorter and sharper, not harder.</p>
+      <p class="small" style="margin-top:6px;">Your first two weeks are a ramp-in, so you can find your working weights without being too sore for swimming. Phase 2 is where your strength numbers should move. Phase 3 holds that strength with less volume so you feel fresh for sectionals, districts and state &mdash; it should feel shorter and sharper, not harder.</p>
     </div>
   </div>
 
@@ -350,12 +350,12 @@
    preview edits live before committing them here permanently.
    ========================================================================= */
 var CONFIG = {
-  seasonStart: "2026-11-04",
+  seasonStart: "2026-11-10",
   seasonEnd:   "2027-03-21",
 
   phaseBlocks: [
-    {phase:1, start:"2026-11-04", end:"2026-12-13", label:"Phase 1: Build",    blurb:"Build a base, learn the lifts, and find chest and tricep positions that feel good. Short sessions, steady progress."},
-    {phase:2, start:"2026-12-14", end:"2027-01-31", label:"Phase 2: Strength", blurb:"Heavier weight and fewer reps, so your pulling, hips and legs get stronger for the second half of the season."},
+    {phase:1, start:"2026-11-10", end:"2026-11-22", label:"Phase 1: Ramp-In", blurb:"Two weeks to find your working weights and get comfortable again, without being too sore for swimming. Every set should end with 3 or 4 reps left."},
+    {phase:2, start:"2026-11-23", end:"2027-01-31", label:"Phase 2: Strength", blurb:"Heavier weight and fewer reps, so your pulling, hips and legs get stronger before districts."},
     {phase:3, start:"2027-02-01", end:"2027-03-21", label:"Phase 3: Peak",     blurb:"Hold your strength with less volume so you feel fresh for sectionals, districts and state."}
   ],
 
@@ -376,6 +376,7 @@ var CONFIG = {
   liftOverrides: [
     {start:"2026-11-06", end:"2026-11-06", mode:"no-lift", label:"No Lift — Fort Wayne Invite"},
     {start:"2026-11-13", end:"2026-11-13", mode:"no-lift", label:"No Lift — Mason Meet"},
+    {start:"2026-11-27", end:"2026-11-27", mode:"no-lift", label:"No Lift — Thanksgiving Weekend"},
     {start:"2026-12-09", end:"2026-12-09", mode:"modified", label:"Meet-Week Lift — Holiday Classic",
       plan:{
         "chip": "Meet-Week Lift",
@@ -416,7 +417,7 @@ var CONFIG = {
 
   program: {
     1: {
-      mon: {label:"Legs + Core", note:"Legs are one of your favorites, so we start the week there. Machines and the Smith machine keep it simple while you learn what heavier feels like. Short on purpose: about 30 to 40 minutes.", exercises:[
+      mon: {label:"Legs + Core", note:"Legs are one of your favorites, so we start the week there. These first two weeks are a ramp-in: pick weights that leave 3 or 4 reps in the tank. Short on purpose: about 30 to 40 minutes.", exercises:[
         {type:"sets", name:"Smith Machine Squat", sets:["10","10","10"], rest:"90 sec", cue:"Feet slightly in front of the bar, sit back and down until your thighs are about parallel, then drive up through your whole foot. The machine guides the bar, so you can focus on your legs and your form. No Smith machine? Use the leg press or a goblet squat."},
         {type:"sets", name:"Hip Thrust", sets:["10","10","10"], rest:"90 sec", cue:"Upper back on a bench, with the bar, a Smith machine or a padded dumbbell across your hips. Drive through your heels and squeeze hard at the top. This is the hip drive behind your underwater dolphin kick and every wall push-off. No bench? Do glute bridges on the floor."},
         {type:"sets", name:"Leg Curl", sets:["12","12"], rest:"60 sec", cue:"Controlled, full range, slow on the way down. Strong hamstrings and glutes help your underwaters and push-offs."},
